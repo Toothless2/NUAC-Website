@@ -16,7 +16,10 @@
       <%= button_to 'Login', '#', class: 'button'%>
       <nav class='navbar'>
         <ul>
-          <li><img src=<%= asset_path 'Logo.png' %>></li>
+          <li><%= link_to root_path do%>
+              <img src=<%= asset_path 'Logo.png' %>>
+              <%end%>
+          </li>
           <li><%= link_to "About Us", "#"%></li>
           <li><%= link_to "Events & Calender", "#"%></li>
           <li><%= link_to "Club Records", "#"%></li>

@@ -92,8 +92,8 @@ pre {
     width: 15em;
 }
 
- .navbar a {
-     text-decoration: none;
+.navbar a {
+    text-decoration: none;
     padding: 20px 5px;
     display: inline-block;
     font-size: 1.5em;
@@ -107,3 +107,11 @@ pre {
      background-color: var(--accent-colour);
      color: white;
  }
+
+ .navbar ul li:first-child{
+     z-index: 1;
+ }
+
+.navbar ul li:first-child a:hover{
+    background-color: transparent;
+}
