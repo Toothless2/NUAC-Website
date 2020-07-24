@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= link_to '🖋 Edit', (PageContent.find_by(page: 'home').nil? ? new_page_content_path(page: 'home') : edit_page_content_path(PageContent.find_by(page: 'home'), page: 'home')), method: :get, class:'link-button' %>
+<% if user_signed_in? && current_user.admin%>
+  <%= link_to '🖋 Edit', (PageContent.find_by(page: 'home').nil? ? new_page_content_path(page: 'home') : edit_page_content_path(PageContent.find_by(page: 'home'), page: 'home')), method: :get, class:'link-button' %>
+<%end%>
 <div>
   <% if PageContent.find_by(page: 'home')%>
   <%= sanitize markdown_body(PageContent.find_by(page: 'home').body) %>
@@ -9,5 +11,7 @@
 </div>
 
 <h1 style='display:inline-block'>News Feed</h1>
-<%= link_to '🖋 Create New', new_post_path, method: :get, class:'link-button news-new-button' %>
+<% if user_signed_in? && current_user.admin%>
+  <%= link_to '🖋 Create New', new_post_path, method: :get, class:'link-button news-new-button' %>
+<%end%>
 <%= render collection: @posts, as: :post, partial: 'postIndex'%>

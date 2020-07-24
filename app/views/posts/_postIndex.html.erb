@@ -5,8 +5,10 @@
         <%= sanitize markdown_body(post.body) %>
     </div>
     <div class='news-feed-article-buttons'>
-        <%= link_to "Delete", post_path(post), method: :delete %>
-        <%= link_to "Edit", edit_post_path(post)%>
+        <% if user_signed_in? && current_user.admin%>
+            <%= link_to "Delete", post_path(post), method: :delete %>
+            <%= link_to "Edit", edit_post_path(post)%>
+        <%end%>
         <%= link_to "See Full Post >", post_path(post) %>
     </div>
 </article>
