@@ -3,6 +3,7 @@ class PageContentsController < ApplicationController
 
   def new
     @page_content = PageContent.new
+    @page_content.page = params[:page]
     session[:return_to] ||= request.referer # uses session to return to the calling page
   end
 
