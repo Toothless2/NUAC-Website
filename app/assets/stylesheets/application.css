@@ -13,3 +13,68 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+    --accent-colour: #003c72;
+}
+
+* {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    transition: all 0.5s;
+}
+
+ .container {
+        width: 80%;
+        margin: auto;
+ }
+
+.login-button {
+    float: right;
+    background-color: var(--accent-colour);
+    border-radius: 0.2em;
+    color: white;
+    border: none;
+    font-size: 2em;
+    height: 1.8em;
+    width: 5em;
+}
+
+.login-button:hover {
+    background-color: white;
+    color: black;
+}
+
+ .navbar ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+ }
+
+ .navbar img {
+    height: 14em;
+ }
+
+.navbar li {
+    width: 15em;
+}
+
+ .navbar a {
+     text-decoration: none;
+    padding: 20px 5px;
+    display: inline-block;
+    font-size: 1.5em;
+    width: 9.5em;
+    text-align: center;
+    border-radius: 0.5em;
+    color: black;
+ }
+
+ .navbar a:hover {
+     background-color: var(--accent-colour);
+     color: white;
+ }

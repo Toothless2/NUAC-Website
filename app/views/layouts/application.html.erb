@@ -12,7 +12,21 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <div class='container'>
+      <%= button_to 'Login', '#', class: 'login-button'%>
+      <nav class='navbar'>
+        <ul>
+          <li><img src=<%= asset_path 'Logo.png' %>></li>
+          <li><%= link_to "About Us", "#"%></li>
+          <li><%= link_to "Events & Calender", "#"%></li>
+          <li><%= link_to "Club Records", "#"%></li>
+          <li><%= link_to "Alumni", "#"%></li>
+          <li><%= link_to "Contact Us", "#"%></li>
+        </ul>
+      </nav>
+      <br/>
+      <br/>
+      <%= yield %>
+    </div>
   </body>
 </html>
