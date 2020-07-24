@@ -13,7 +13,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class='container'>
-      <%= button_to 'Login', '#', class: 'login-button'%>
+      <%= button_to 'Login', '#', class: 'button'%>
       <nav class='navbar'>
         <ul>
           <li><img src=<%= asset_path 'Logo.png' %>></li>
@@ -26,7 +26,9 @@
       </nav>
       <br/>
       <br/>
-      <%= yield %>
+      <div class='container'>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
+<%= link_to '🖋 Edit', (PageContent.find_by(page: 'home').nil? ? new_page_content_path(page: 'home') : edit_page_content_path(PageContent.find_by(page: 'home'), page: 'home')), method: :get, class:'link-button' %>
+<pre>
+<%= PageContent.find_by(page: 'home')&.body %>
+</pre>
 
-<h1>Posts</h1>
+
+<h1 style='display:inline-block'>News Feed</h1>
+<%= link_to '🖋 Create New', new_post_path, method: :get, class:'link-button news-new-button' %>
+<hr/>
 
 <table>
   <thead>
@@ -23,7 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
