@@ -6,3 +6,33 @@
     display: inline;
     margin-left: 4em;
 }
+
+.news-feed-article
+{
+    width: 95%;
+    margin: auto;
+    min-height: 10em;
+    display: flex;
+    flex-direction: column;
+    padding:1em;
+}
+
+.news-feed-article-body
+{
+    align-self: center;
+    width: 70em;
+    max-height: 17em;
+    overflow: hidden;
+    padding-bottom: 0.5em;
+}
+
+.news-feed-article-buttons
+{
+    text-align: end;
+    font-size: 1.3em;
+}
+
+.news-feed-article-buttons a {
+    padding-left: 1em;
+    color: var(--accent-colour);
+}

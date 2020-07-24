@@ -1,0 +1,12 @@
+<hr/>
+<article class='news-feed-article'>
+    <h2><%= post.title %></h2>
+    <div class='news-feed-article-body'>
+        <%= sanitize markdown_body(post.body) %>
+    </div>
+    <div class='news-feed-article-buttons'>
+        <%= link_to "Delete", post_path(post), method: :delete %>
+        <%= link_to "Edit", edit_post_path(post)%>
+        <%= link_to "See Full Post >", post_path(post) %>
+    </div>
+</article>
