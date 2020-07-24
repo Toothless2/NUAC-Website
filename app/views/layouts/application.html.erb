@@ -13,7 +13,12 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class='container'>
-      <%= button_to 'Login', '#', class: 'button'%>
+      <% if user_signed_in?%>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button'%>
+      <%= link_to current_user.name, edit_user_registration_path, method: :get, style: 'text-decoration: none; border: 2px solid black;padding: 1em;z-index:99'%>
+      <%else%>
+      <%= button_to 'Login', new_user_session_path, class: 'button'%>
+      <%end%>
       <nav class='navbar'>
         <ul>
           <li><%= link_to root_path do%>
