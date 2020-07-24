@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_161937) do
+ActiveRecord::Schema.define(version: 2020_07_24_193912) do
 
   create_table "page_contents", force: :cascade do |t|
-    t.string "page"
-    t.string "body"
+    t.string "page", null: false
+    t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page"], name: "index_page_contents_on_page"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
+    t.string "title", null: false
+    t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

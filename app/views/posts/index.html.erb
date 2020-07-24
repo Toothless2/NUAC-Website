@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 <%= link_to '🖋 Edit', (PageContent.find_by(page: 'home').nil? ? new_page_content_path(page: 'home') : edit_page_content_path(PageContent.find_by(page: 'home'), page: 'home')), method: :get, class:'link-button' %>
 <pre>
-<%= PageContent.find_by(page: 'home')&.body %>
+<% if PageContent.find_by(page: 'home')%>
+<%= PageContent.find_by(page: 'home').body %>
+<%else%>
+Welcome to the NUAC Website!
+<%end%>
 </pre>
 
 
