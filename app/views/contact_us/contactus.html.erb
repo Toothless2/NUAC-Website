@@ -1,2 +1,25 @@
-<h1>ContactUs#contactus</h1>
-<p>Find me in app/views/contact_us/contactus.html.erb</p>
+<div class='container contact-us'>
+    <h1>Contact Us</h1>
+    <%= form_for @contactus, url: contactus_path(@contactus) do |f| %>
+        <% if flash[:error].present? %>
+            <p> flash[:error]</p>
+        <% end %>
+        <%= f.label :name %> <br>
+        <%= f.text_field :name, required: true %>
+
+        <br>
+        <%= f.label :email %> <br>
+        <%= f.text_field :email, required: true %>
+
+        <br>
+        <%= f.label :message %> <br>
+        <%= f.text_area :message, as: :text %>
+
+    
+        <%= f.label :nickname %> <br>
+        <%= f.text_field :nickname, hint: 'leave this field blank' %>
+
+
+        <%= f.submit 'Send Message', class: "button" %>
+    <% end %>
+</div>

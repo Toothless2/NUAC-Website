@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'aboutus', to: 'about_us#aboutus'
   get 'contactus', to: 'contact_us#contactus'
+  post 'contactus', to: 'contact_us#create'
   get 'alumni', to: 'alumni#index'
   
   resources :committees, except: [ :index, :show ]
