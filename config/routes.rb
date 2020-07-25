@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'alumni', to: 'alumni#index'
+  
   resources :committees, except: [ :show ]
   devise_for :users, controllers: {registrations: 'registrations' }
   root to: 'posts#index'
