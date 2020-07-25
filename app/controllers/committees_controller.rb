@@ -1,5 +1,5 @@
 class CommitteesController < ApplicationController
-  before_action :set_committee, only: [:show, :edit, :update, :destroy]
+  before_action :set_committee, only: [ :edit, :update, :destroy]
   before_action :require_admin, except: [:index]
 
   # GET /committees
