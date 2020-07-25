@@ -48,17 +48,24 @@ pre {
  }
 
 .button {
-    float: right;
-    background-color: var(--accent-colour);
     border-radius: 0.2em;
-    color: white;
-    border: none;
-    font-size: 2em;
-    height: 1.8em;
-    width: 5em;
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 1em;
 }
 
 .button:hover {
+    background-color: black;
+    color: white;
+}
+
+.button-blue {
+    background-color: var(--accent-colour);
+    border-color: var(--accent-colour);
+    color: white;
+}
+
+.button-blue:hover {
     background-color: white;
     color: black;
 }

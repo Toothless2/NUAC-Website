@@ -1,4 +1,5 @@
 class PageContentsController < ApplicationController
+  before_action :require_admin
   before_action :set_page_content, only: [:edit, :update]
 
   def new

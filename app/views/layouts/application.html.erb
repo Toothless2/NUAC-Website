@@ -12,13 +12,15 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class='container'>
+    <div class='container' style='font-size:1.5em;text-align:right'>
       <% if user_signed_in?%>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button'%>
-      <%= link_to current_user.name, edit_user_registration_path, method: :get, style: 'text-decoration: none; border: 2px solid black;padding: 1em;z-index:99'%>
+        <%= link_to current_user.name, edit_user_registration_path, method: :get, class: 'button'%>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button button-blue'%>
       <%else%>
-      <%= button_to 'Login', new_user_session_path, class: 'button'%>
+        <%= link_to 'Login', new_user_session_path, class: 'button button-blue'%>
       <%end%>
+    </div>
+    <div class='container'>
       <nav class='navbar'>
         <ul>
           <li><%= link_to root_path do%>
