@@ -1,12 +1,5 @@
 class CommitteesController < ApplicationController
   before_action :set_committee, only: [ :edit, :update, :destroy]
-  before_action :require_admin, except: [:index]
-
-  # GET /committees
-  # GET /committees.json
-  def index
-    @committees = Committee.all
-  end
 
   # GET /committees/new
   def new
