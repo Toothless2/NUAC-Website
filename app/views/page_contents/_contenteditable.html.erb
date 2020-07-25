@@ -1,0 +1,10 @@
+<% if admin_user? %>
+  <%= link_to '🖋 Edit', page_content_helper(page), method: :get, class:'link-button' %>
+<%end%>
+<div class='content-editable'>
+  <% if PageContent.find_by(page: page)%>
+  <%= sanitize markdown_body(PageContent.find_by(page: page).body) %>
+  <%else%>
+    Welcome to the NUAC Website!
+  <%end%>
+</div>

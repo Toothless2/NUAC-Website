@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NUACWebsite</title>
+    <title>NUAC</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,28 +12,9 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class='container' style='font-size:1.5em;text-align:right'>
-      <% if user_signed_in?%>
-        <%= link_to current_user.name, edit_user_registration_path, method: :get, class: 'button'%>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'button button-blue'%>
-      <%else%>
-        <%= link_to 'Login', new_user_session_path, class: 'button button-blue'%>
-      <%end%>
-    </div>
+    <%= render 'layouts/logginheader'%>
     <div class='container'>
-      <nav class='navbar'>
-        <ul>
-          <li><%= link_to root_path do%>
-              <img src=<%= asset_path 'Logo.png' %>>
-              <%end%>
-          </li>
-          <li><%= link_to "About Us", "#"%></li>
-          <li><%= link_to "Events & Calender", "#"%></li>
-          <li><%= link_to "Club Records", "#"%></li>
-          <li><%= link_to "Alumni", "#"%></li>
-          <li><%= link_to "Contact Us", "#"%></li>
-        </ul>
-      </nav>
+      <%= render 'layouts/navbar'%>
       <br/>
       <br/>
       <div class='container'>

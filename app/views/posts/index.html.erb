@@ -1,14 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if admin_user? %>
-  <%= link_to '🖋 Edit', page_content_helper('home'), method: :get, class:'link-button' %>
-<%end%>
-<div>
-  <% if PageContent.find_by(page: 'home')%>
-  <%= sanitize markdown_body(PageContent.find_by(page: 'home').body) %>
-  <%else%>
-    Welcome to the NUAC Website!
-  <%end%>
-</div>
+<%= render partial: 'page_contents/contenteditable', locals: { page: 'home' } %>
 
 <h1 style='display:inline-block'>News Feed</h1>
 <% if admin_user? %>

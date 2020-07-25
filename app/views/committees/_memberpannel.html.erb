@@ -1,0 +1,10 @@
+<article>
+    <h3><%= committee.name %> | <%= committee.role %></h3>
+    <div><%= sanitize(markdown_body(committee.description)) %></div>
+    <% if admin_user? %>
+        <div>
+            <%= link_to 'Edit', edit_committee_path(committee) %>
+            <%= link_to 'Destroy', committee, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    <% end %>
+</article>
