@@ -1,0 +1,66 @@
+.login-page {
+    text-align: center;
+}
+
+.login-page .form-containter {
+margin: auto;
+  border-radius: 1em;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding-top: 10px;
+  box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
+}
+
+.form-containter h2 {
+    font-size: 2em;
+}
+
+.form-containter [type=submit]  {
+    background-color: var(--accent-colour);
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
+    border-radius: 1em;
+    margin: 5px 20px 40px 20px;
+    transition: all 0.5s ease-in-out;
+    border: 2px solid var(--accent-colour);
+  }
+
+  .form-containter [type=submit]:hover {
+      background-color: white;
+      color: var(--accent-colour);
+  }
+
+  .form-containter input[type=email], .form-containter input[type=password], .form-containter input[type=text] {
+    background-color: #f6f6f6;
+    border: none;
+    color: var(--accent-colour);
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid var(--accent-colour);
+    border-radius: 1em;
+    outline: none;
+  }
+
+  .form-containter input[type=email]:focus, .form-containter input[type=password]:focus, .form-containter input[type=text]:focus {
+    box-shadow: 0px 0px 8px -2px rgba(89,86,89, 1);
+  }
+  
+  .logfooter {
+    background-color: var(--accent-colour);
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 0 0 1em 1em;
+    display: flex;
+    justify-content: space-evenly;
+  }

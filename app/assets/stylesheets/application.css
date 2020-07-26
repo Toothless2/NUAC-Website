@@ -67,7 +67,7 @@ pre {
 
 .button-blue:hover {
     background-color: white;
-    color: black;
+    color: var(--accent-colour);
 }
 
 .link-button, .link-button:visited{
