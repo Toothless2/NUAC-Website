@@ -11,9 +11,6 @@
           <th>Bowstyle</th>
           <th>Year</th>
           <th>Location</th>
-          <% if @records.any? { |record| can_edit_record(record) } %>
-            <th colspan="2">Options</th>
-          <% end %>
         </tr>
       </thead>
 

@@ -1,12 +1,14 @@
 <tr>
-    <td><%= record.name %></td>
+    <td><%= record.name %> 
+        <% if can_edit_record(record) %>
+            <%= link_to 'Edit', edit_record_path(record) %>
+            <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+    </td>
     <td><%= record.score %></td>
     <td><%= record.round %></td>
     <td><%= record.bowstyle %></td>
     <td><%= record.academic_year_string %></td>
     <td><%= record.location %></td>
-    <% if can_edit_record(record) %>
-        <td><%= link_to 'Edit', edit_record_path(record) %></td>
-        <td><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <%end%>
+    
 </tr>
