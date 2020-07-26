@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :records
   root to: 'posts#index'
 
   get 'aboutus', to: 'about_us#aboutus'
@@ -16,5 +14,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations' }
   resources :posts
   resources :page_contents, only: [:edit, :update, :new, :create]
+  resources :records, only: [:index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
