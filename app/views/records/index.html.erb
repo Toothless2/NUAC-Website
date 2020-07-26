@@ -1,26 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class='records'>
+  <h1>Records</h1>
 
-<h1>Records</h1>
+  <div class='records-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Archer</th>
+          <th>Score</th>
+          <th>Round</th>
+          <th>Bowstyle</th>
+          <th>Year</th>
+          <th>Location</th>
+          <% if @records.any? { |record| can_edit_record(record) } %>
+            <th colspan="2">Options</th>
+          <% end %>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Record name</th>
-      <th>Score</th>
-      <th>Round</th>
-      <th>Bowstyle</th>
-      <th>Year</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <%= render partial: 'recorddispaly', collection: @records, as: :record%>
+    </table>
+  </div>
 
-  <tbody>
-    <%= render partial: 'recorddispaly', collection: @records, as: :record%>
-</table>
+  <br>
 
-<br>
-
-<% if user_signed_in? %>
-  <%= render 'form' %>
-<% end %>
+  <% if user_signed_in? %>
+    <%= render 'form' %>
+  <% end %>
+</div>

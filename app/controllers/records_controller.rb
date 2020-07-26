@@ -68,7 +68,7 @@ class RecordsController < ApplicationController
         redirect_to records_path
       end
     end
-
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_record
       @record = Record.find(params[:id])
