@@ -19,7 +19,6 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    text-transform: uppercase;
     box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
     border-radius: 1em;
     margin: 5px 20px 40px 20px;
@@ -50,6 +49,7 @@
   .contact-form textarea {
       width: calc(50em + 10px);
       height: 13em;
+      resize: none;
   }
 
   .contact-form input[type=email]:focus, .contact-form input[type=password]:focus, .contact-form input[type=text]:focus {

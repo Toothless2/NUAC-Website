@@ -5,10 +5,11 @@
 
   <div class="form-inputs">
     <%= f.input :page, as: :hidden, input_html: {value: params[:page]} %>
-    <%= f.input :body, as: :text, required: true %>
+    <%= f.input :body, as: :text, required: true, label: false, placeholder: "Text to show on page #{@page_content.page}" %>
   </div>
 
   <div class="form-actions">
+    <%= link_to "Back", :back, class: 'button'%>
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
