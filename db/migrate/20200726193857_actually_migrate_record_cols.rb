@@ -1,7 +1,7 @@
 class ActuallyMigrateRecordCols < ActiveRecord::Migration[6.0]
   def change
-    delete_column :records, :bowstyle
-    delete_column :records, :round
+    remove_column :records, :bowstyle
+    remove_column :records, :round
     change_column :records, :bowstyle, :integer
     change_column :records, :round, :integer
   end
