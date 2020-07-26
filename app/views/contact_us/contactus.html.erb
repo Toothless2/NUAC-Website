@@ -1,26 +1,15 @@
 <div class='container contact-us'>
     <h1>Contact Us</h1>
-    <%= form_for @contactus, url: contactus_path(@contactus) do |f| %>
-        <% if flash[:error].present? %>
-            <p> flash[:error]</p>
+    <div class='contact-form'>
+        <%= simple_form_for @contactus, url: contactus_path(@contactus) do |f| %>
+            <div class='nameemaildiv'>
+            <%= f.input :name, required: true, label: false, placeholder: 'Name' %>
+            <%= f.input :email, required: true, label: false, placeholder: 'Email' %>
+            </div>
+            <%= f.input :message, as: :text, label: false, placeholder: 'Message (Markdown Formatting Supported)' %>
+            <%= f.input :nickname, as: :hidden %>
+            
+            <%= f.submit 'Send Message' %>
         <% end %>
-        <%= f.label :name %> <br>
-        <%= f.text_field :name, required: true %>
-
-        <br>
-        <%= f.label :email %> <br>
-        <%= f.text_field :email, required: true %>
-
-        <br>
-        <%= f.label :message %> <br>
-        <%= f.text_area :message, as: :text %>
-
-        <div style='visibility: hidden'>
-        <%= f.label :nickname %> <br>
-        <%= f.text_field :nickname, hint: 'leave this field blank' %>
-        </div>
-
-
-        <%= f.submit 'Send Message', class: "button" %>
-    <% end %>
+    </div>
 </div>

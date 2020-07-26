@@ -11,7 +11,7 @@ class ContactUsController < ApplicationController
       redirect_to contactus_path, notice: 'Message sent successfully'
     else
       flash.now[:error] = 'Cannot send message'
-      render :new
+      render :contactus
     end
   end
 end
