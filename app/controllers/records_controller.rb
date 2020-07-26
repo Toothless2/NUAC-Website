@@ -1,19 +1,14 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_record, only: [:show, :edit, :update, :destroy, :edit]
+  before_action :authenticate_user!, except: [:index]
+  before_action :check_editor, only: [:edit, :update]
+
+  helper_method :can_edit_record
 
   # GET /records
   # GET /records.json
   def index
     @records = Record.all
-  end
-
-  # GET /records/1
-  # GET /records/1.json
-  def show
-  end
-
-  # GET /records/new
-  def new
     @record = Record.new
   end
 
@@ -25,11 +20,12 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(record_params)
+    @record.record_name = current_user.record_name
 
     respond_to do |format|
       if @record.save
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
-        format.json { render :show, status: :created, location: @record }
+        format.html { redirect_to records_path, notice: 'Record was successfully created.' }
+        format.json { render records_path, status: :created, location: @record }
       else
         format.html { render :new }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -42,8 +38,8 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: 'Record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @record }
+        format.html { redirect_to records_path, notice: 'Record was successfully updated.' }
+        format.json { render records_path, status: :ok, location: @record }
       else
         format.html { render :edit }
         format.json { render json: @record.errors, status: :unprocessable_entity }
@@ -54,14 +50,25 @@ class RecordsController < ApplicationController
   # DELETE /records/1
   # DELETE /records/1.json
   def destroy
-    @record.destroy
-    respond_to do |format|
-      format.html { redirect_to records_url, notice: 'Record was successfully destroyed.' }
-      format.json { head :no_content }
+    destroyMessage = 'Record was successfully destroyed.'
+    if can_edit_record(@record)
+        @record.destroy
+    else
+      destroyMessage = 'Cannot delete someone elses record!'
     end
   end
 
   private
+    def can_edit_record(record)
+      user_signed_in? && (current_user.admin || record.record_name.user == current_user)
+    end
+
+    def check_editor
+      unless can_edit_record(@record)
+        redirect_to records_path
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_record
       @record = Record.find(params[:id])
@@ -69,6 +76,6 @@ class RecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def record_params
-      params.require(:record).permit(:record_name_id, :score, :round, :bowstyle, :achived_at, :location, :bowstyle)
+      params.require(:record).permit(:score, :round, :bowstyle, :achived_at, :location)
     end
 end

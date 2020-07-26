@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_26_165714) do
+ActiveRecord::Schema.define(version: 2020_07_26_193857) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
@@ -41,14 +41,15 @@ ActiveRecord::Schema.define(version: 2020_07_26_165714) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_record_names_on_name"
     t.index ["user_id"], name: "index_record_names_on_user_id"
   end
 
   create_table "records", force: :cascade do |t|
     t.integer "record_name_id", null: false
     t.integer "score"
-    t.string "round"
-    t.string "bowstyle"
+    t.integer "round"
+    t.integer "bowstyle"
     t.date "achived_at"
     t.string "location"
     t.string "other_round"

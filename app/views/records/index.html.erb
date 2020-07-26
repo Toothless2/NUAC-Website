@@ -1,1 +1,26 @@
-<h2>Comming Soon</h2>
+<p id="notice"><%= notice %></p>
+
+<h1>Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Record name</th>
+      <th>Score</th>
+      <th>Round</th>
+      <th>Bowstyle</th>
+      <th>Year</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'recorddispaly', collection: @records, as: :record%>
+</table>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= render 'form' %>
+<% end %>
