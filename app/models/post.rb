@@ -1,3 +1,5 @@
 class Post < ApplicationRecord
-    validates :body, :title, presence: true
+    validates :body, :title, :tag, presence: true
+
+    validates :tag, inclusion: { in: %w(general social competition announcement) }
 end

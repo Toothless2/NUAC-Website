@@ -1,14 +1,26 @@
+<div class='post-form'>
+  <%= simple_form_for(@post, html: { autocomplete: 'off' }) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@post) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <div class='form-header'>
+        <%= f.input :title, required: true, label: false, placeholder: 'Title', autofocus: true %>
+        <div class='radio-buttons'>
+          <%= f.input :tag,
+                      as: :radio_buttons,
+                      collection: [['General', 'general'], ['Social','social'], ['Competition', 'competition'], ['Announcement', 'announcement']],
+                      value_method: :second,
+                      checked: ['General', 'general'],
+                      label: false %>
+        </div>
+      </div>
+      <%= f.input :body, as: :text, required: true, label: false, placeholder: 'Body' %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :title, required: true %>
-    <%= f.input :body, as: :text, required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= link_to 'Cancel', :back, class: 'button' %>
+      <%= f.button :submit, value: 'Save' %>
+    </div>
+  <% end %>
+</div>
