@@ -1,16 +1,12 @@
-<p id="notice"><%= notice %></p>
+<article>
+  <h2><%= @post.title %></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <p>
+    <%= sanitize markdown_body(@post.body) %>
+  </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<% if admin_user? %>
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-<%end%>
-<%= link_to 'Back', posts_path %>
+  <% if admin_user? %>
+    <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%end%>
+  <%= link_to 'Back', posts_path %>
+</article>
