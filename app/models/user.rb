@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_one :record_name, dependent: :nullify
   after_save :update_record
+
+  has_many :records, through: :record_name
   
   private
   def update_record

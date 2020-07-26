@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :records
   root to: 'posts#index'
 
   get 'aboutus', to: 'about_us#aboutus'

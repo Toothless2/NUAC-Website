@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  record_name: one
+  score: 1
+  round: MyString
+  bowstyle: MyString
+  achived_at: 2020-07-26
+  location: MyString
+  bowstyle: MyString
+
+two:
+  record_name: two
+  score: 1
+  round: MyString
+  bowstyle: MyString
+  achived_at: 2020-07-26
+  location: MyString
+  bowstyle: MyString
