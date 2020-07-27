@@ -1,12 +1,12 @@
 <div class='container contact-us'>
     <h1>Contact Us</h1>
     <div class='contact-form'>
-        <%= simple_form_for @contactus, url: contactus_path(@contactus) do |f| %>
+        <%= simple_form_for :contactus, url: contactus_path do |f| %>
             <div class='nameemaildiv'>
             <%= f.input :name, required: true, label: false, placeholder: 'Name' %>
             <%= f.input :email, required: true, label: false, placeholder: 'Email' %>
             </div>
-            <%= f.input :message, as: :text, label: false, placeholder: 'Message (Markdown Formatting Supported)' %>
+            <%= f.input :message, as: :text, label: false, required: true, placeholder: 'Message (Markdown Formatting Supported)' %>
             <%= f.input :nickname, as: :hidden %>
             
             <%= f.submit 'Send Message' %>

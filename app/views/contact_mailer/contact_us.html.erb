@@ -1,0 +1,6 @@
+<p>Name: <%= @contact[:name] %></p>
+<p>Email: <%= @contact[:email] %></p>
+<div>
+<p>Message:</p>
+<%= sanitize markdown_body(@contact[:message]) %>
+</div>
