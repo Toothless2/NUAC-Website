@@ -1,3 +1,4 @@
+require 'csv'
 class Record < ApplicationRecord
   belongs_to :record_name
 
@@ -10,11 +11,33 @@ class Record < ApplicationRecord
     self.record_name.name # for some reason canot use an association?
   end
 
+  def self.getAllAcademicYears
+    Record.order(achived_at: :desc).map { |m|
+      if m.achived_at.month >= 9
+        "#{m.achived_at.year}/#{m.achived_at.year + 1}"
+      else
+        "#{m.achived_at.year - 1}/#{m.achived_at.year}"
+      end
+    }.uniq
+  end
+
   def academic_year_string
     if achived_at.month >= 9
       "#{achived_at.year}/#{achived_at.year + 1}"
     else
       "#{achived_at.year - 1}/#{achived_at.year}"
+    end
+  end
+
+  def self.to_csv
+    attributes = %w{name score round bowstyle achived_at academic_year_string location}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map{ |attr| user.send(attr) }
+      end
     end
   end
 

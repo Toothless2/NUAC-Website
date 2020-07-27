@@ -1,6 +1,8 @@
 <div class='records'>
   <h1>Records</h1>
-
+  <div>
+    <%= render 'search' %>
+  </div>
   <div class='records-table'>
     <table>
       <thead>
@@ -13,15 +15,36 @@
           <th>Location</th>
         </tr>
       </thead>
-
       <tbody>
-        <%= render partial: 'recorddispaly', collection: @records, as: :record%>
+        <tr></tr> <!-- Needs to be here or the table gets funky -->
+        <% @records.each do |record| %>
+          <%= render partial: 'recorddispaly', locals: { record: record} %>
+        <%end%>
+      </tbody>
     </table>
   </div>
 
+  <br>
+    <%= link_to 'Download', records_path(format: :csv), data: { confirm: 'This will download ALL data, are you sure?' } %>
   <br>
 
   <% if user_signed_in? %>
     <%= render 'form' %>
   <% end %>
 </div>
+
+<script>
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+// do the work...
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+})));
+</script>

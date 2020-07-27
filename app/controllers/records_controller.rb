@@ -5,19 +5,29 @@ class RecordsController < ApplicationController
 
   helper_method :can_edit_record
 
-  # GET /records
-  # GET /records.json
   def index
-    @records = Record.all
+    if search_params.nil? || search_params.empty?
+      @records = Record.all
+    else
+
+      if !search_params[:pb].to_i.zero?
+        @records = Record.where(round: search_params[:round], bowstyle: search_params[:bowstyle]).group(:record_name_id).order(score: :desc).distinct(:record_name).each { |e| e} 
+      else
+        @records = Record.all.order(score: :desc).where(round: search_params[:round], bowstyle: search_params[:bowstyle])
+      end
+    end
+
     @record = Record.new
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Record.all.to_csv, filename: "Display-Data-#{DateTime.now}.csv" }
+    end
   end
 
-  # GET /records/1/edit
   def edit
   end
 
-  # POST /records
-  # POST /records.json
   def create
     @record = Record.new(record_params)
     @record.record_name = current_user.record_name
@@ -33,8 +43,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /records/1
-  # PATCH/PUT /records/1.json
   def update
     respond_to do |format|
       if @record.update(record_params)
@@ -47,12 +55,11 @@ class RecordsController < ApplicationController
     end
   end
 
-  # DELETE /records/1
-  # DELETE /records/1.json
   def destroy
     destroyMessage = 'Record was successfully destroyed.'
     if can_edit_record(@record)
         @record.destroy
+        redirect_to records_path
     else
       destroyMessage = 'Cannot delete someone elses record!'
     end
@@ -77,5 +84,9 @@ class RecordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def record_params
       params.require(:record).permit(:score, :round, :bowstyle, :achived_at, :location)
+    end
+
+    def search_params
+      params[:search]
     end
 end
