@@ -8,7 +8,7 @@ class ContactMailer < ApplicationMailer
   def contact_us(contact)
     @contact = contact
 
-    mail(to: ENV["CONTACT_EMAIL"], from: contact[:email], subject: "Website Contact - #{contact[:name]}")
+    mail(to: ENV["CONTACT_EMAIL"], from: @contact[:email], subject: "Website Contact - #{contact[:name]}")
   end
 
   helper_method :markdown_body
