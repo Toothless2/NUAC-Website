@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'alumni', to: 'alumni#index'
   
   resources :committees, except: [ :index, :show ]
-  devise_for :users, controllers: {registrations: 'registrations' }
+  devise_for :users, controllers: {registrations: 'registrations', confirmations: 'confirmations' }
   resources :posts
   resources :page_contents, only: [:edit, :update, :new, :create]
   resources :records, except: [:show, :new]

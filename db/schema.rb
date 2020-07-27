@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_26_193857) do
+ActiveRecord::Schema.define(version: 2020_07_27_223053) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
@@ -36,14 +36,8 @@ ActiveRecord::Schema.define(version: 2020_07_26_193857) do
     t.string "tag"
   end
 
-  create_table "record_names", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_record_names_on_name"
-    t.index ["user_id"], name: "index_record_names_on_user_id"
-  end
+# Could not dump table "record_names" because of following StandardError
+#   Unknown type 'user' for column 'user_id'
 
   create_table "records", force: :cascade do |t|
     t.integer "record_name_id", null: false
@@ -72,6 +66,10 @@ ActiveRecord::Schema.define(version: 2020_07_26_193857) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
