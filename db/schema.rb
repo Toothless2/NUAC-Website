@@ -36,24 +36,28 @@ ActiveRecord::Schema.define(version: 2020_07_27_223053) do
     t.string "tag"
   end
 
-# Could not dump table "record_names" because of following StandardError
-#   Unknown type 'user' for column 'user_id'
+  create_table "record_names", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_record_names_on_name"
+    t.index ["user_id"], name: "index_record_names_on_user_id"
+  end
 
   create_table "records", force: :cascade do |t|
     t.integer "record_name_id", null: false
     t.integer "score"
-    t.integer "round"
-    t.integer "bowstyle"
     t.date "achived_at"
     t.string "location"
     t.string "other_round"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "bowstyle"
+    t.integer "round"
     t.index ["achived_at"], name: "index_records_on_achived_at"
-    t.index ["bowstyle"], name: "index_records_on_bowstyle"
     t.index ["location"], name: "index_records_on_location"
     t.index ["record_name_id"], name: "index_records_on_record_name_id"
-    t.index ["round"], name: "index_records_on_round"
   end
 
   create_table "users", force: :cascade do |t|
