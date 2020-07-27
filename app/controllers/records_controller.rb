@@ -83,7 +83,7 @@ class RecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def record_params
-      params.require(:record).permit(:score, :round, :bowstyle, :achived_at, :location)
+      params.require(:record).permit(:score, :round, :bowstyle, :achived_at)
     end
 
     def search_params

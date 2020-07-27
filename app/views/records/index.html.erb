@@ -12,7 +12,6 @@
           <th>Round</th>
           <th>Bowstyle</th>
           <th>Year</th>
-          <th>Location</th>
         </tr>
       </thead>
       <tbody>
@@ -23,10 +22,11 @@
       </tbody>
     </table>
   </div>
-
+  <!--
   <br>
     <%= link_to 'Download', records_path(format: :csv), data: { confirm: 'This will download ALL data, are you sure?' } %>
   <br>
+  -->
 
   <% if user_signed_in? %>
     <%= render 'form' %>
