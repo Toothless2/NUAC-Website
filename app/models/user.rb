@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, uniqueness: true
-  validates :email, format: {with: /\b[A-Za-z0-9._%+-]+@newcastle\.ac\.uk\z/, message: 'Must be a NCL email address ending with @newcastle.ac.uk or @ncl.ac.uk'}, on: :create
+  validates :email, format: {with: /\b[A-Za-z0-9._%+-]+@(newcastle|ncl)\.ac\.uk\z/, message: 'Must be a NCL email address ending with @newcastle.ac.uk or @ncl.ac.uk'}, on: :create
 
   has_one :record_name, dependent: :nullify
   after_save :update_record
@@ -25,7 +25,7 @@ class User < ApplicationRecord
     if Rails.env == 'production' # make my life easier
       true
     else
-      true
+      false
     end
   end
 end
