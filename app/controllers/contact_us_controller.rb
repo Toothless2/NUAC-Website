@@ -1,10 +1,9 @@
 class ContactUsController < ApplicationController
   def contactus
-    @contactus
   end
 
   def create
-    @contactus = params[:contactus]
+    contactus = params[:contactus]
 
     if /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(contactus[:email]) == nil # Check its a valid email
       flash.now[:error] = 'Cannot send message invalid email'
