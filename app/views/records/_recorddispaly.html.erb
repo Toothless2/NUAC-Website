@@ -1,8 +1,8 @@
 <tr>
     <td title="Archer"><%= record.name.titlecase %>
         <% if can_edit_record(record) %>
-            <%= link_to 'Edit', edit_record_path(record) %>
-            <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <!-- <%= link_to 'Edit', edit_record_path(record) %> -->
+            <%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' } %>
         <%end%>
     </td>
     <td title="Score"><%= record.score %></td>
