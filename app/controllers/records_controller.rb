@@ -30,10 +30,8 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.save
         format.html { redirect_to records_path, notice: 'Record was successfully created.' }
-        format.json { render records_path, status: :created, location: @record }
       else
-        format.html { render :new }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
+        format.html { redirect_to records_path, notice: 'Record addition failed' }
       end
     end
   end
@@ -42,10 +40,8 @@ class RecordsController < ApplicationController
     respond_to do |format|
       if @record.update(record_params)
         format.html { redirect_to records_path, notice: 'Record was successfully updated.' }
-        format.json { render records_path, status: :ok, location: @record }
       else
         format.html { render :edit }
-        format.json { render json: @record.errors, status: :unprocessable_entity }
       end
     end
   end

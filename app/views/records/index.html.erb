@@ -6,7 +6,7 @@
   </style>
 
   <h1>Records</h1>
-  <div>
+  <div class='search-form'>
     <%= render 'search' %>
   </div>
   <div class='records-table'>
@@ -32,7 +32,9 @@
   </div>
 
   <% if user_signed_in? %>
-    <%= render 'form' %>
+    <div class='new-form'>
+      <%= render 'form' %>
+    </div>
   <% end %>
 </div>
 
