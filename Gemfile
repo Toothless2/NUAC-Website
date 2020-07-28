@@ -41,6 +41,7 @@ gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'figaro'
 gem 'redcarpet', '~> 3.5'
 gem 'mail_form'
+gem "recaptcha"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

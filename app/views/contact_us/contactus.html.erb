@@ -1,3 +1,4 @@
+<%= flash[:recaptcha_error] %>
 <div class='container contact-us'>
     <h1>Contact Us</h1>
     <div class='contact-form'>
@@ -9,6 +10,10 @@
             <%= f.input :message, as: :text, label: false, required: true, placeholder: 'Message (Markdown Formatting Supported)' %>
             <%= f.input :nickname, as: :hidden %>
             
+            <div class='capcica'>
+            <%= recaptcha_tags %>
+            </div>
+
             <%= f.submit 'Send Message' %>
         <% end %>
     </div>

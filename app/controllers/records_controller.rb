@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
     @record.record_name = current_user.record_name
 
     respond_to do |format|
-      if @record.save
+      if verify_recaptcha(@record) && @record.save
         format.html { redirect_to records_path, notice: 'Record was successfully created.' }
       else
         format.html { redirect_to records_path, notice: 'Record addition failed' }

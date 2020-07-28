@@ -1,3 +1,5 @@
+<%= flash[:recaptcha_error] %>
+
 <div class='login-page'>
   <div class='form-containter'>
     <h2>Sign Up</h2>
@@ -20,6 +22,9 @@
                     input_html: { autocomplete: "new-password" },
                     label: false,
                     placeholder: 'Confirm Password' %>
+        <div class='capcica'>
+          <%= recaptcha_tags %>
+        </div>
       </div>
 
       <div class="form-actions">
