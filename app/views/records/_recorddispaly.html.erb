@@ -7,8 +7,10 @@
     </td>
     <td title="Score"><%= record.score %></td>
     <td title="Round"><%= record.round.to_s.titlecase %></td>
-    <td><%= record.bowstyle.to_s.titlecase %></td>
-    <td><%= record.achived_at.strftime("%e/%-m/%Y") %></td>
-    <td><%= record.academic_year_string %></td>
-    <td><%= record.gender.to_s.titlecase %></td>
+    <td title="Bowstyle"><%= record.bowstyle.to_s.titlecase %></td>
+    <td title="Date"><%= record.achived_at.strftime("%e/%-m/%Y") %></td>
+    <td title="Academic Year"><%= record.academic_year_string %></td>
+    <td title="Gender"><%= record.gender.to_s.titlecase %></td>
+    <td title="User" style="width:100px;visibility:hidden"><%= record.record_name_id %></td>
+
 </tr>

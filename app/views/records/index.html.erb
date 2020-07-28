@@ -58,7 +58,7 @@ function duplicate_hide()
   var table_rows = document.querySelectorAll('tbody tr');
 
   var unique = {};
-  var selection = ["Archer", "Round", "Score"];
+  var selection = ["User", "Round", "Score"];
 
   for (row of table_rows)
   {
@@ -76,7 +76,7 @@ function duplicate_hide()
     // Destructuring assignment
     var [the_name, the_round, the_score] = temp;
 
-    the_name = the_name.innerText;
+    the_name = the_name.innerHTML;
     the_round = the_round.innerHTML;
     the_score = the_score.innerHTML == "&nbsp;" ? 0 : the_score.innerHTML;
 
