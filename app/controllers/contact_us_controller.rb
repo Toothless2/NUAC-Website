@@ -9,8 +9,6 @@ class ContactUsController < ApplicationController
       cansend = verify_recaptcha(contactus)
     rescue => exception
       cansend = false
-    ensure
-      cansend = false
     end
 
     respond_to do |format|
