@@ -3,9 +3,10 @@
   <div class="form-inputs">
     <%= f.input :round, collection: [['portsmouth', 'Portsmouth'], ['bray1', 'Bray I'], ['worcester', 'Worcester'], ['vegas', 'Vegas'], ['fita18', 'Fita 18'], ['york', 'York'], ['hereford', 'Hereford'], ['bristol1', 'Bristol I'], ['bristol2', 'Bristol II'], ['bristol3', 'Bristol III'], ['bristol4', 'Bristol IV'], ['bristol5', 'Bristol V'], ['fita70', 'Fita 70'], ['other', 'Other']], value_method: :first, label_method: :second, selected: (params[:search].nil? ? :portsmouth : params[:search][:round]) %>
     <%= f.input :bowstyle, collection: [['recurve', 'Recurve'], ['compound', 'Compound'], ['barebow', 'Barebow'], ['longbow', 'Longbow'], ['afb', 'American Flat Bow'] ], value_method: :first, label_method: :second, selected: (params[:search].nil? ? :recurve : params[:search][:bowstyle]) %>
-    <%= f.input :from, collection: Record.getAllAcademicYears.reverse, selected: (params[:search].nil? ? 0 : params[:search][:from]) %>
-    <%= f.input :to, collection: Record.getAllAcademicYears.reverse, selected: (params[:search].nil? ? 0 : params[:search][:to]) %>
-    <%= f.input :pb, as: :boolean, label: "PB Only?", input_html: { checked: (params[:search].nil? ? false : !params[:search][:pb].to_i.zero?) } %>
+    <%= f.input :from, as: :string, input_html: {type: :date, value: (params[:search].nil? ? Date.yesterday : params[:search][:from]), default: Date.yesterday} %>
+    <%= f.input :to, as: :string, input_html: {type: :date, value: (params[:search].nil? ? Date.today : params[:search][:to])} %>
+    <%= f.input :mf, collection: ['Male', 'Female'], default: 0, label: "Gender", input_html: { checked: (params[:search].nil? ? false : !params[:search][:pb].to_i.zero?) } %>
+    <%= f.input :null, as: :boolean ,label: "PB Only", input_html: { onchange: "duplicate_check(event)" } %>
   </div>
 
   <div class="form-actions">

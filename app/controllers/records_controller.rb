@@ -9,12 +9,7 @@ class RecordsController < ApplicationController
     if search_params.nil? || search_params.empty?
       @records = Record.all
     else
-
-      if !search_params[:pb].to_i.zero?
-        @records = Record.where(round: search_params[:round], bowstyle: search_params[:bowstyle]).group(:record_name_id).order(score: :desc).distinct(:record_name).each { |e| e} 
-      else
-        @records = Record.all.order(score: :desc).where(round: search_params[:round], bowstyle: search_params[:bowstyle])
-      end
+      @records = Record.order(score: :desc).where(round: search_params[:round], bowstyle: search_params[:bowstyle], achived_at: search_params[:from]..search_params[:to])
     end
 
     @record = Record.new
@@ -83,7 +78,7 @@ class RecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def record_params
-      params.require(:record).permit(:score, :round, :bowstyle, :achived_at)
+      params.require(:record).permit(:score, :round, :bowstyle, :achived_at )
     end
 
     def search_params

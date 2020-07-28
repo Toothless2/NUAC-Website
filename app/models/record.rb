@@ -21,6 +21,14 @@ class Record < ApplicationRecord
     }.uniq
   end
 
+  def self.academicYeartoDateStart(stringAcademic) # first day in academic year
+    Date.new(stringAcademic[0..3].to_i, 9, 1)
+  end
+
+  def self.academicYeartoDateEnd(stringAcademic) # last day in academic year
+    Date.new(stringAcademic[5..].to_i, 8, 1)
+  end
+
   def academic_year_string
     if achived_at.month >= 9
       "#{achived_at.year}/#{achived_at.year + 1}"
@@ -38,6 +46,58 @@ class Record < ApplicationRecord
       all.each do |user|
         csv << attributes.map{ |attr| user.send(attr) }
       end
+    end
+  end
+
+  def self.getBowstyleEnum(style)
+    case style
+    when "recurve"
+      0
+    when "compound"
+      1
+    when "barebow"
+      2
+    when "longbow"
+      3
+    when "afb"
+      4
+    else
+      -1
+    end
+  end
+
+  def self.getRoundEnum(round)
+    case round
+    when "portsmouth"
+      0
+    when "bray1"
+      1
+    when "worcester"
+      2
+    when "vegas"
+      3
+    when "fita18"
+      4 
+    when "york"
+      5
+    when "hereford"
+      13
+    when "bristol1"
+      6
+    when "bristol2"
+      7
+    when "bristol3"
+      8
+    when "bristol4"
+      9
+    when "bristol5"
+      10
+    when "fita70"
+      11
+    when "other"
+      12
+    else
+      -1
     end
   end
 

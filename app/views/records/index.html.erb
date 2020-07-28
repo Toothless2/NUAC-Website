@@ -1,4 +1,10 @@
 <div class='records'>
+  <style>
+  .hidden {
+    display: none;
+  }
+  </style>
+
   <h1>Records</h1>
   <div>
     <%= render 'search' %>
@@ -11,7 +17,8 @@
           <th>Score</th>
           <th>Round</th>
           <th>Bowstyle</th>
-          <th>Year</th>
+          <th>Date</th>
+          <th>Academic Year</th>
         </tr>
       </thead>
       <tbody>
@@ -47,4 +54,78 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
         .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
         .forEach(tr => table.appendChild(tr) );
 })));
+
+function duplicate_hide()
+{
+  var table_rows = document.querySelectorAll('tbody tr');
+
+  var unique = {};
+  var selection = ["Archer", "Round", "Score"];
+
+  for (row of table_rows)
+  {
+    if(row.innerText == "")
+    {
+      continue;
+    }
+
+    var temp = [];
+    for (select of selection)
+    {
+      temp.push(row.querySelector(`td[title="${select}"]`));
+    }
+  
+    // Destructuring assignment
+    var [the_name, the_round, the_score] = temp;
+
+    the_name = the_name.innerText;
+    the_round = the_round.innerHTML;
+    the_score = the_score.innerHTML == "&nbsp;" ? 0 : the_score.innerHTML;
+
+    if (the_name in unique && the_round in unique[the_name])
+    {
+      //same test, saved score is lower than current score, hide previous row
+      if (+unique[the_name][the_round].score < +the_score)
+      {
+        unique[the_name][the_round].row.className = "hidden";
+        unique[the_name][the_round].score = the_score;
+        unique[the_name][the_round].row = row;
+      }
+      else
+      {
+        row.className = "hidden";
+      }
+    }
+    else
+    {
+      // Create new object if it doesn't exist on name
+      if (!(the_name in unique))
+      {
+        unique[the_name] = {};
+      }
+      unique[the_name][the_round] = {score: the_score, row};
+    }
+  }
+}
+
+function duplicate_show()
+{
+  var table_rows = document.querySelectorAll('tbody tr');
+  for (row of table_rows)
+  {
+    row.className = "";
+  }
+}
+
+function duplicate_check(event)
+{
+  if (event.target.checked)
+  {
+    duplicate_hide();
+  }
+  else
+  {
+    duplicate_show();
+  }
+}
 </script>
