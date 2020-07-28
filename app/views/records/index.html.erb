@@ -19,6 +19,7 @@
           <th>Bowstyle</th>
           <th>Date</th>
           <th>Academic Year</th>
+          <th>Gender</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +30,6 @@
       </tbody>
     </table>
   </div>
-  <!--
-  <br>
-    <%= link_to 'Download', records_path(format: :csv), data: { confirm: 'This will download ALL data, are you sure?' } %>
-  <br>
-  -->
 
   <% if user_signed_in? %>
     <%= render 'form' %>

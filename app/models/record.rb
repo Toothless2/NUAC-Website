@@ -2,7 +2,8 @@ require 'csv'
 class Record < ApplicationRecord
   belongs_to :record_name
 
-  validates :score, :round, :bowstyle, :achived_at, presence: true
+  validates :score, :round, :bowstyle, :achived_at, :gender, presence: true
+  enum gender: { male: true, female: false}
   enum bowstyle: { recurve: 0, compound: 1, barebow: 2, longbow: 3, afb: 4 }
   enum round: { portsmouth: 0, bray1: 1, worcester: 2, vegas: 3, fita18: 4, york: 5, hereford: 13, bristol1: 6, bristol2: 7, bristol3: 8, bristol4: 9, bristol5: 10, fita70: 11, other: 12 }
   validate :valid_score?
