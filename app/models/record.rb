@@ -39,7 +39,7 @@ class Record < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{name score round bowstyle achived_at academic_year_string location}
+    attributes = %w{id record_name_id name score round bowstyle achived_at academic_year_string gender}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
