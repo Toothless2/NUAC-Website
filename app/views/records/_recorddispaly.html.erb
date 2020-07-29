@@ -1,5 +1,5 @@
 <tr>
-    <td title="Archer"><%= record.name.titlecase %>
+    <td title="Archer" user="<%=record.record_name_id%>"><%= record.name.titlecase %>
         <% if can_edit_record(record) %>
             <!-- <%= link_to 'Edit', edit_record_path(record) %> -->
             <%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -11,6 +11,4 @@
     <td title="Date"><%= record.achived_at.strftime("%e/%-m/%Y") %></td>
     <td title="Academic Year"><%= record.academic_year_string %></td>
     <td title="Gender"><%= record.gender.to_s.titlecase %></td>
-    <td title="User" style="width:100px;visibility:hidden"><%= record.record_name_id %></td>
-
 </tr>
