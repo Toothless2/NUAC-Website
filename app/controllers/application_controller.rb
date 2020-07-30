@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
-    include ApplicationHelper
-    
+
     helper_method :markdown_body
     helper_method :admin_user?
+    helper_method :page_content_helper
     
     private
+    def page_content_helper(pagename)
+        PageContent.find_by(page: pagename).nil? ? new_page_content_path(page: pagename) : edit_page_content_path(PageContent.find_by(page: pagename))
+    end
+
     def markdown_body(text)
         @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
         @markdown.render(text)

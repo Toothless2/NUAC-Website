@@ -5,7 +5,7 @@ class PageContentsController < ApplicationController
   def new
     @page_content = PageContent.new
     @page_content.page = params[:page]
-    session[:return_to] ||= request.referer # uses session to return to the calling page
+    session[:return_to] = request.referer # uses session to return to the calling page
   end
 
   def create
@@ -23,8 +23,8 @@ class PageContentsController < ApplicationController
 
   # GET /page_contents/{id}/edit
   def edit
-    @page_content = PageContent.find_by(page: params[:page])
-    session[:return_to] ||= request.referer # uses session to return to the calling page
+    session[:return_to] = request.referer # uses session to return to the calling page
+    # @page_content = PageContent.find(params[:id])
   end
 
   # PATCH/PUT /page_contents/1
