@@ -1,7 +1,8 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy, :edit]
   before_action :authenticate_user!, except: [:index]
-  before_action :check_editor, only: [:edit, :update]
+  before_action :confirm_user, only: [:create, :destroy]
+  before_action :set_record, only: [ :destroy]
+  before_action :check_editor, only: [:edit, :update, :destroy]
 
   helper_method :can_edit_record
 
@@ -20,9 +21,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def create
     @record = Record.new(record_params)
     @record.record_name = current_user.record_name
@@ -32,16 +30,6 @@ class RecordsController < ApplicationController
         format.html { redirect_to records_path, notice: 'Record was successfully created.' }
       else
         format.html { redirect_to records_path, notice: 'Record addition failed' }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @record.update(record_params)
-        format.html { redirect_to records_path, notice: 'Record was successfully updated.' }
-      else
-        format.html { render :edit }
       end
     end
   end
@@ -79,5 +67,11 @@ class RecordsController < ApplicationController
 
     def search_params
       params[:search]
+    end
+
+    def confirm_user
+      unless current_user.confirmed?
+        redirect_to records_path
+      end
     end
 end

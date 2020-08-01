@@ -13,9 +13,9 @@ class ContactUsController < ApplicationController
 
     respond_to do |format|
       if /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.match(contactus[:email]) != nil && cansend && ContactMailer.contact_us(contactus).deliver_now
-        format.html { redirect_to contactus_path, notice: 'Record was successfully created.' }
+        format.html { redirect_to contactus_path, notice: 'Message was successfully sent.' }
       else
-        format.html { render :contactus, notice: 'Failed to send' }
+        format.html { redirect_to contactus_path, notice: 'Failed to send' }
       end
     end
   end

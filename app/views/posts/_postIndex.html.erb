@@ -1,8 +1,8 @@
 <hr/>
 <article class='news-feed-article'>
     <h2><%= post.title %></h2>
-    <div class='news-feed-article-body'>
-        <%= sanitize markdown_body(post.body) %>
+    <div class='news-feed-article-body post-display'>
+        <%= markdown_body(post.body).html_safe %>
     </div>
     <div class='news-feed-article-buttons'>
         <% if user_signed_in? && current_user.admin%>

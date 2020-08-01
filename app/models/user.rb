@@ -14,8 +14,17 @@ class User < ApplicationRecord
   has_many :records, through: :record_name
   
   private
+  def after_confirmation # Run after user confimation
+    r = RecordName.new(user: self)
+    r.name = self.name
+    r.save
+  end
+
   def update_record
-    r = RecordName.find_or_create_by(user: self)
+    if !self.confirmed? || RecordName.find_by(user: self).nil? # Must be a confirmed user to have a record
+      return
+    end
+    r = RecordName.find_by(user: self)
     r.name = self.name
     r.save
   end

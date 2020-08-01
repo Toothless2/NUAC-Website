@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
 
     def markdown_body(text)
-        @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+        @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hardwrap: false), tables: true, superscript: true, highlight: true, strikethrough: true, autolink: true, space_after_headers: true)
         @markdown.render(text)
     end
 

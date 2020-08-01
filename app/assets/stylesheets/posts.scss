@@ -95,3 +95,35 @@
       background-color: white;
       color: var(--accent-colour);
   }
+
+  .records-table {
+    display: flex;
+    justify-content: center;
+}
+
+.post-display tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.post-display tr:hover {
+    background-color: #e6e6e6;
+}
+
+.post-display thead {
+    background-color: var(--accent-colour);
+}
+
+.post-display thead tr:hover {
+    background-color: transparent;
+}
+
+.post-table table, .records-table th, .records-table td {
+    padding: 15px;
+    text-align: center;
+    border-collapse: collapse;
+    border: 0.2em solid var(--accent-colour);
+}
+
+.post-display th {
+    color: white;
+}
