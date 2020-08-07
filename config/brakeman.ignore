@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "68e81b1e12f937bb9e4bf2457e4a694a6ee1f913e3fd86d38ebb4a7341a89c2e",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/committees_controller.rb",
+      "line": 59,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:committee).permit(:name, :role, :description)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "CommitteesController",
+        "method": "committee_params"
+      },
+      "user_input": ":role",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2020-08-07 11:20:57 +0100",
+  "brakeman_version": "4.9.0"
+}
