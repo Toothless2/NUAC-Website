@@ -34,7 +34,7 @@ class User < ApplicationRecord
     if Rails.env == 'production' # make my life easier
       true
     else
-      true
+      false
     end
   end
 end
