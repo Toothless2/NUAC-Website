@@ -34,9 +34,9 @@
   <% if user_signed_in? %>
     <div class='new-form'>
       <% if current_user.confirmed? %>
-      <%= render 'form' %>
+        <%= render 'form' %>
       <% else %>
-      <p>you must confirm your account to be able to add a record</p>
+        <p>you must confirm your account to be able to add a record</p>
       <% end %>
     </div>
   <% end %>

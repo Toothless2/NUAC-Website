@@ -3,9 +3,9 @@ class Record < ApplicationRecord
   belongs_to :record_name
 
   validates :score, :round, :bowstyle, :achived_at, :gender, presence: true
-  enum gender: { male: true, female: false}
-  enum bowstyle: { recurve: 0, compound: 1, barebow: 2, longbow: 3, afb: 4 }
-  enum round: { portsmouth: 0, bray1: 1, worcester: 2, vegas: 3, fita18: 4, york: 5, hereford: 13, bristol1: 6, bristol2: 7, bristol3: 8, bristol4: 9, bristol5: 10, fita70: 11, other: 12 }
+  enum gender: { Male: 0, Female: 1}
+  enum bowstyle: { Recurve: 0, Compound: 1, Barebow: 2, Longbow: 3, AFB: 4 }
+  enum round: { Portsmouth: 0, Bray1: 1, Worcester: 2, Vegas: 3, Fita18: 4, York: 5, Hereford: 13, Bristol1: 6, Bristol2: 7, Bristol3: 8, Bristol4: 9, Bristol5: 10, Fita70: 11, Other: 12 }
   validates :score, with: :valid_score?
 
   def name

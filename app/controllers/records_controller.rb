@@ -8,7 +8,7 @@ class RecordsController < ApplicationController
 
   def index
     if search_params.nil? || search_params.empty?
-      @records = Record.order(score: :desc).where(round: :portsmouth, bowstyle: :recurve, gender: true, achived_at: Date.new(Date.today.year - 1, 9, 1)..Date.new(Date.today.year + 1, 9, 1) )
+      @records = Record.order(score: :desc).where(round: :Portsmouth, bowstyle: :Recurve, gender: :Male, achived_at: Date.new(Date.today.year - 1, 9, 1)..Date.new(Date.today.year + 1, 9, 1) )
     else
       @records = Record.order(score: :desc).where(round: search_params[:round], gender: search_params[:mf], bowstyle: search_params[:bowstyle], achived_at: search_params[:from]..search_params[:to])
     end
