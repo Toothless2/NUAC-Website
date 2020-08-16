@@ -1,0 +1,8 @@
+<div>
+    <p>Title: <%= @event.title %></p>
+    <p>Description: <%= @event.description %></p>
+    <p>Time: <%= @event.date %></p>
+    <%= link_to "Edit", edit_event_path(@event) %>
+    <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to "Back", :back %>
+</div>

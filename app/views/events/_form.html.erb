@@ -1,0 +1,7 @@
+<%= simple_form_for(@event) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :date, as: :string, input_html: { type: 'datetime-local', value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), min: DateTime.now.strftime('%Y-%m-%dT%H:%M') } %>
+
+    <%= f.button :submit %>
+<% end %>

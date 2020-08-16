@@ -1,1 +1,13 @@
-<h2 style='text-align: center'>Comming Soon!<h2>
+<h1>Upcomming Events!</h1>
+<%= link_to "Create Event", new_event_path %>
+
+<% @events.each do |e| %>
+    <div>
+        <p>Title: <%= e.title %></p>
+        <p>Description: <%= e.description %></p>
+        <p>Time: <%= e.date %></p>
+        <%= link_to "Edit", edit_event_path(e) %>
+        <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to "More", event_path(e) %>
+    </div>
+<% end %>
