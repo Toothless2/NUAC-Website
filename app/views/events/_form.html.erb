@@ -1,7 +1,18 @@
-<%= simple_form_for(@event) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :date, as: :string, input_html: { type: 'datetime-local', value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), min: DateTime.now.strftime('%Y-%m-%dT%H:%M') } %>
+<div class='post-form'>
+    <%= simple_form_for(@event) do |f| %>
 
-    <%= f.button :submit %>
-<% end %>
+        <div class="form-inputs">
+            <div class='form-header'>
+                <%= f.input :title, label: false, placeholder: "Title" %>
+                <%= f.input :date, as: :string, input_html: { type: 'datetime-local', value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), min: DateTime.now.strftime('%Y-%m-%dT%H:%M') }, label: false %>
+            </div>
+            <%= f.input :description, as: :text, label: false, placeholder: "Event Description" %>
+        </div>
+
+
+        <div class="form-actions">
+        <%= link_to 'Cancel', :back, class: 'button' %>
+        <%= f.button :submit, value: 'Save' %>
+        </div>
+    <% end %>
+</div>

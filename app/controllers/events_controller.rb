@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     helper_method :date_suffix
 
     def index
-        @events = Event.all.where('date > ?', DateTime.yesterday)
+        @events = Event.where('date > ?', DateTime.yesterday)
     end
 
     def show

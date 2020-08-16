@@ -4,11 +4,11 @@
 <% end %>
 
 <div class='timeline'>
-    <% @events.each do |e| %>
+    <% @events.sort_by(&:date).each do |e| %>
         <div>
             <article class='timeline-container'>
                 <div class='content'>
-                    <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P on the %d#{ date_suffix(e.date.day) }, %h %Y") %></h2>
+                    <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P On %B %d#{ date_suffix(e.date.day) }, %Y") %></h2>
                     <div style='max-height:10em;overflow:hidden;text-overflow:ellipsis;'><%= markdown_body(e.description).html_safe %></div>
 
                     <% if user_signed_in? %>
@@ -34,8 +34,8 @@
 
                         <% if current_user.admin %>
                             <div class='event-control-buttons'>
-                                <%= link_to "Edit", edit_event_path(e) %>
-                                <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
+                                <%= link_to "Edit  |", edit_event_path(e) %>
+                                <%= link_to "Delete  |", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
                         <%end%>
                     <% end %>
 
