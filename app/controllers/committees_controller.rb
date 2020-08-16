@@ -1,4 +1,6 @@
 class CommitteesController < ApplicationController
+  # before_action :authenticate_user!
+  # before_action :require_admin
   before_action :set_committee, only: [ :edit, :update, :destroy]
 
   # GET /committees/new
@@ -17,7 +19,7 @@ class CommitteesController < ApplicationController
 
     respond_to do |format|
       if @committee.save
-        format.html { redirect_to committees_path, notice: 'Committee was successfully created.' }
+        format.html { redirect_to aboutus_path, notice: 'Committee was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @committee.errors, status: :unprocessable_entity }
@@ -30,7 +32,7 @@ class CommitteesController < ApplicationController
   def update
     respond_to do |format|
       if @committee.update(committee_params)
-        format.html { redirect_to committees_path, notice: 'Committee was successfully updated.' }
+        format.html { redirect_to aboutus_path, notice: 'Committee was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @committee.errors, status: :unprocessable_entity }
@@ -43,7 +45,7 @@ class CommitteesController < ApplicationController
   def destroy
     @committee.destroy
     respond_to do |format|
-      format.html { redirect_to committees_url, notice: 'Committee was successfully destroyed.' }
+      format.html { redirect_to aboutus_path, notice: 'Committee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
