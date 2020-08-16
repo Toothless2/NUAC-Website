@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def user_confired?
+    def user_confirmed?
         unless current_user.confirmed?
           redirect_to request.referrer
         end

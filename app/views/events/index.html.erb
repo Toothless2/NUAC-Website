@@ -3,37 +3,43 @@
     <%= link_to "Create Event", new_event_path %>
 <% end %>
 
-<% @events.each do |e| %>
-    <div>
-        <p>Title: <%= e.title %></p>
-        <p>Description: <%= e.description %></p>
-        <p>Time: <%= e.date %></p>
+<div class='timeline'>
+    <% @events.each do |e| %>
+        <div>
+            <article class='timeline-container'>
+                <div class='content'>
+                    <h2><%= e.title %></h2>
+                    <p>Description: <%= e.description %></p>
+                    <p>Time: <%= e.date %></p>
 
-        <% if user_signed_in? %>
-            <% if current_user.liked?(e, vote_scope: :going) %>
-                <%= link_to "Ungoing", response_event_path(e, event_resonse: :clear), method: :put %>
-            <% else %>
-                <%= link_to "Going", response_event_path(e, event_resonse: :going), method: :put %>
-            <% end %>
+                    <% if user_signed_in? %>
+                        <% if current_user.liked?(e, vote_scope: :going) %>
+                            <%= link_to "Ungoing", response_event_path(e, event_resonse: :clear), method: :put %>
+                        <% else %>
+                            <%= link_to "Going", response_event_path(e, event_resonse: :going), method: :put %>
+                        <% end %>
 
-            <% if current_user.liked?(e, vote_scope: :mabey) %>
-                <%= link_to "Unmabey", response_event_path(e, event_resonse: :clear), method: :put %>
-            <% else %>
-                <%= link_to "Mabey", response_event_path(e, event_resonse: :mabey), method: :put %>
-            <% end %>
+                        <% if current_user.liked?(e, vote_scope: :mabey) %>
+                            <%= link_to "Unmabey", response_event_path(e, event_resonse: :clear), method: :put %>
+                        <% else %>
+                            <%= link_to "Mabey", response_event_path(e, event_resonse: :mabey), method: :put %>
+                        <% end %>
 
-            <% if current_user.liked?(e, vote_scope: :cant) %>
-                <%= link_to "Un-Cant go", response_event_path(e, event_resonse: :clear), method: :put %>
-            <% else %>
-                <%= link_to "Cant Go", response_event_path(e, event_resonse: :cant), method: :put %>
-            <% end %>
+                        <% if current_user.liked?(e, vote_scope: :cant) %>
+                            <%= link_to "Un-Cant go", response_event_path(e, event_resonse: :clear), method: :put %>
+                        <% else %>
+                            <%= link_to "Cant Go", response_event_path(e, event_resonse: :cant), method: :put %>
+                        <% end %>
 
-            <% if current_user.admin %>
-                <%= link_to "Edit", edit_event_path(e) %>
-                <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
-            <% end %>
-        <% end %>
+                        <% if current_user.admin %>
+                            <%= link_to "Edit", edit_event_path(e) %>
+                            <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
+                        <% end %>
+                    <% end %>
 
-        <%= link_to "More", event_path(e) %>
-    </div>
-<% end %>
+                    <%= link_to "More", event_path(e) %>
+                </div>
+            </article>
+        </div>
+    <% end %>
+</div>

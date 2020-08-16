@@ -1,3 +1,64 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.timeline {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+
+.timeline::before {
+    content: ' ';
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    border-radius: 2em;
+    border: 0.6em solid blueviolet;
+    background-color: green;
+    left: 2.68em;
+    z-index: 99;
+    top: -3.1em;
+}
+
+.timeline::after{
+    content: ' ';
+    position: absolute;
+    width: 0.6em;
+    background-color: pink;
+    top: 0;
+    bottom: 0;
+    left: 4em;
+}
+
+.timeline-container {
+    padding: 10px 40px;
+    position: relative;
+    border: 3px solid red;
+    border-radius: 2em;
+    left: 8em;
+    margin: 2em 0;
+}
+
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: brown;
+    border: 0.2em solid orchid;
+    border-radius: 1em;
+    top: 1.3em;
+    left: -4.9em;
+    z-index: 99;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    width: 4em;
+    height: 0.5em;
+    background-color: purple;
+    top: 2em;
+    left: -4em;
+}
