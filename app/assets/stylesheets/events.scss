@@ -14,8 +14,8 @@
     width: 2em;
     height: 2em;
     border-radius: 2em;
-    border: 0.6em solid blueviolet;
-    background-color: green;
+    border: 0.6em solid var(--accent-colour);
+    background-color: var(--accent-colour);
     left: 2.68em;
     z-index: 99;
     top: -3.1em;
@@ -25,7 +25,7 @@
     content: ' ';
     position: absolute;
     width: 0.6em;
-    background-color: pink;
+    background-color: var(--accent-colour);
     top: 0;
     bottom: 0;
     left: 4em;
@@ -34,7 +34,7 @@
 .timeline-container {
     padding: 10px 40px;
     position: relative;
-    border: 3px solid red;
+    border: 3px solid var(--accent-colour);
     border-radius: 2em;
     left: 8em;
     margin: 2em 0;
@@ -45,8 +45,8 @@
     position: absolute;
     width: 1.5em;
     height: 1.5em;
-    background-color: brown;
-    border: 0.2em solid orchid;
+    background-color: var(--accent-colour);
+    border: 0.2em solid var(--accent-colour);
     border-radius: 1em;
     top: 1.3em;
     left: -4.9em;
@@ -58,7 +58,58 @@
     position: absolute;
     width: 4em;
     height: 0.5em;
-    background-color: purple;
+    background-color: var(--accent-colour);
     top: 2em;
     left: -4em;
+}
+
+.response-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.event_response {
+    text-align: center;
+    text-decoration: none;
+    border: 0.2em solid var(--accent-colour);
+    position: relative;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin: 0.3em;
+    min-width: 100px;
+}
+
+.event_response:hover {
+    background-color: var(--accent-colour);
+    color: white;
+}
+
+.event_response:hover:after{
+    content: ' ✔️';
+}
+
+.event_response_selected {
+    background-color: var(--accent-colour);
+    color: white;
+}
+
+.event_response_selected:hover {
+    background-color: transparent;
+    text-decoration: line-through;
+    color: black;
+}
+
+.event_response_selected:hover:after {
+    content: '';
+}
+
+.event-control-buttons {
+    text-align: right;
+
+    * {
+        text-decoration: none;
+        color: var(--accent-colour);
+        font-size: 1.5em;
+    }
 }

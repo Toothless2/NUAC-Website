@@ -5,6 +5,8 @@ class EventsController < ApplicationController
     before_action :user_confirmed?, only: [:event_response]
     before_action :can_respond?, only: [:event_response]
 
+    helper_method :date_suffix
+
     def index
         @events = Event.all.where('date > ?', DateTime.yesterday)
     end
@@ -91,5 +93,9 @@ class EventsController < ApplicationController
         unless @event.date >= DateTime.now
             redirect_to request.referrer
         end
+    end
+
+    def date_suffix(d)
+        'th' if 11<=d && d<=13 else {1: 'st',2: 'nd',3: 'rd'}.get(d%10, 'th')
     end
 end
