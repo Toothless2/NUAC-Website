@@ -2,12 +2,16 @@ class EventsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
     before_action :require_admin, except: [:show, :index, :event_response]
     before_action :set_post, only: [:show, :edit, :update, :destroy, :event_response]
+    before_action :user_confirmed?, only: [:event_response]
 
     def index
         @events = Event.all
     end
 
     def show
+        @going_users = User.where(id: @event.find_votes_for(vote_scope: :going).select(:voter_id)).select(:name)
+        @mabey_users = User.where(id: @event.find_votes_for(vote_scope: :mabey).select(:voter_id)).select(:name)
+        @cant_users = User.where(id: @event.find_votes_for(vote_scope: :cant).select(:voter_id)).select(:name)
     end
 
     def new

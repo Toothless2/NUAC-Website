@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :markdown_body
     helper_method :admin_user?
     helper_method :page_content_helper
+    helper_method :user_confired?
     
     private
     def page_content_helper(pagename)
@@ -24,4 +25,10 @@ class ApplicationController < ActionController::Base
           redirect_to root_url
         end
     end
+
+    def user_confired?
+        unless current_user.confirmed?
+          redirect_to request.referrer
+        end
+      end
 end

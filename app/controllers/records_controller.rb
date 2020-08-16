@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :confirm_user, only: [:create, :destroy]
+  before_action :user_confirmed, only: [:create, :destroy]
   before_action :set_record, only: [ :destroy]
   before_action :check_editor, only: [:edit, :update, :destroy]
 
@@ -67,11 +67,5 @@ class RecordsController < ApplicationController
 
     def search_params
       params[:search]
-    end
-
-    def confirm_user
-      unless current_user.confirmed?
-        redirect_to records_path
-      end
     end
 end
