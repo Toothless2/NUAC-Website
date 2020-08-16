@@ -12,6 +12,8 @@ class User < ApplicationRecord
   after_save :update_record
 
   has_many :records, through: :record_name
+
+  acts_as_voter
   
   private
   def after_confirmation # Run after user confimation

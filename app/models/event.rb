@@ -1,3 +1,3 @@
 class Event < ApplicationRecord
-    has_many :going
+    acts_as_votable
 end

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :require_admin, except: [:show, :index]
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :require_admin, except: [:show, :index, :event_response]
+    before_action :set_post, only: [:show, :edit, :update, :destroy, :event_response]
 
     def index
         @events = Event.all
@@ -44,6 +44,23 @@ class EventsController < ApplicationController
         redirect_to events_path
     end
 
+    def event_response
+        @event.unliked_by current_user, vote_scope: :going
+        @event.unliked_by current_user, vote_scope: :mabey
+        @event.unliked_by current_user, vote_scope: :cant
+
+        case params[:event_resonse]
+            when 'going'
+                going
+            when 'mabey'
+                mabey
+            when 'cant'
+                cant
+        end
+
+        redirect_to request.referrer
+    end
+
     private
     def event_params
         params.require(:event).permit(:title, :description, :date)
@@ -51,5 +68,17 @@ class EventsController < ApplicationController
 
     def set_post
         @event = Event.find(params[:id])
+    end
+
+    def going
+        @event.liked_by current_user, vote_scope: :going
+    end
+
+    def mabey
+        @event.liked_by current_user, vote_scope: :mabey
+    end
+
+    def cant
+        @event.liked_by current_user, vote_scope: :cant
     end
 end

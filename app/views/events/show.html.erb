@@ -2,6 +2,23 @@
     <p>Title: <%= @event.title %></p>
     <p>Description: <%= @event.description %></p>
     <p>Time: <%= @event.date %></p>
+
+    <% if user_signed_in? && current_user.liked?(e, vote_scope: :going) %>
+        <%= link_to "Ungoing", response_event_path(e, event_resonse: :clear), method: :put %>
+    <% else %>
+        <%= link_to "Going", response_event_path(e, event_resonse: :going), method: :put %>
+    <% end %>
+    <% if user_signed_in? && current_user.liked?(e, vote_scope: :mabey) %>
+        <%= link_to "Unmabey", response_event_path(e, event_resonse: :clear), method: :put %>
+    <% else %>
+        <%= link_to "Mabey", response_event_path(e, event_resonse: :mabey), method: :put %>
+    <% end %>
+    <% if user_signed_in? && current_user.liked?(e, vote_scope: :cant) %>
+        <%= link_to "Un-Cant go", response_event_path(e, event_resonse: :clear), method: :put %>
+    <% else %>
+        <%= link_to "Cant Go", response_event_path(e, event_resonse: :cant), method: :put %>
+    <% end %>
+    
     <%= link_to "Edit", edit_event_path(@event) %>
     <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %>
     <%= link_to "Back", :back %>

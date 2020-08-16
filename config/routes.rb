@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   resources :page_contents, only: [:edit, :update, :new, :create]
   resources :records, only: [:index, :create, :destroy]
 
-  resources :events
+  resources :events do
+    member do
+      put "response", to: "events#event_response"
+    end
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
