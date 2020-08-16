@@ -96,6 +96,6 @@ class EventsController < ApplicationController
     end
 
     def date_suffix(d)
-        'th' if 11<=d && d<=13 else {1: 'st',2: 'nd',3: 'rd'}.get(d%10, 'th')
+        {1:'st',2:'nd',3:'rd'}.get(d%10, 'th')
     end
 end
