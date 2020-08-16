@@ -3,9 +3,10 @@ class EventsController < ApplicationController
     before_action :require_admin, except: [:show, :index, :event_response]
     before_action :set_post, only: [:show, :edit, :update, :destroy, :event_response]
     before_action :user_confirmed?, only: [:event_response]
+    before_action :can_respond?, only: [:event_response]
 
     def index
-        @events = Event.all
+        @events = Event.all.where('date > ?', DateTime.yesterday)
     end
 
     def show
@@ -84,5 +85,11 @@ class EventsController < ApplicationController
 
     def cant
         @event.liked_by current_user, vote_scope: :cant
+    end
+
+    def can_respond?
+        unless @event.date >= DateTime.now
+            redirect_to request.referrer
+        end
     end
 end
