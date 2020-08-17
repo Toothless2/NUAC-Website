@@ -96,6 +96,15 @@ class EventsController < ApplicationController
     end
 
     def date_suffix(d)
-        {1:'st',2:'nd',3:'rd'}.get(d%10, 'th')
+        case d % 10
+            when 1
+                'st'
+            when 2
+                'nd'
+            when 3
+                'rd'
+            else
+                'th'
+        end
     end
 end
