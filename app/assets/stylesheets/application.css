@@ -25,6 +25,11 @@
     transition: all 0.5s;
 }
 
+.field_with_errors{
+    background-color: transparent;
+    display: inherit;
+}
+
 hr{
     background-color: var(--accent-colour);
     height: 0.25em;

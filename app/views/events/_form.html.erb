@@ -2,9 +2,9 @@
     <%= simple_form_for(@event) do |f| %>
 
         <div class="form-inputs">
-            <div class='form-header'>
+            <div class='form-header' style='flex-wrap: wrap;'>
                 <%= f.input :title, label: false, placeholder: "Title" %>
-                <%= f.input :date, as: :string, input_html: { type: 'datetime-local', value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), min: DateTime.now.strftime('%Y-%m-%dT%H:%M') }, label: false %>
+                <%= f.input :date, as: :string, input_html: { type: 'datetime-local', value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), min: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-dateselector' }, label: false %>
             </div>
             <%= f.input :description, as: :text, label: false, placeholder: "Event Description" %>
         </div>

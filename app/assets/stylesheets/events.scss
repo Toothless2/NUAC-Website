@@ -113,3 +113,77 @@
         font-size: 1.5em;
     }
 }
+
+.response-buttons button {
+    border: 0.2em solid var(--accent-colour);
+    border-radius: 0.5em;
+    background-color: var(--accent-colour);
+    color: white;
+    padding: 0.5em;
+    margin: 0.3em;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .model-section {
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+  }
+
+  .model-section ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
+
+  .event-back {
+    text-decoration: none;
+    color: var(--accent-colour);
+    font-size: 1.5em;
+  }
+
+  .form-dateselector {
+    border: 0.15em solid var(--accent-colour);
+    border-radius: 1em;
+    padding: 1em;
+    background-color: #f6f6f6;
+  }

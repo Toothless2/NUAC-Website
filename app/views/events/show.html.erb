@@ -1,38 +1,69 @@
 <div>
-    <p>Title: <%= @event.title %></p>
-    <p>Description: <%= @event.description %></p>
-    <p>Time: <%= @event.date %></p>
+    <h2><%= @event.title %> @ <%= @event.date.strftime("%l:%M%P On %B %_d#{ date_suffix(@event.date.day) }, %Y") %></h2>
+    <div><%= markdown_body(@event.description).html_safe %></div>
 
     <% if user_signed_in? %>
-        <% if current_user.liked?(@event, vote_scope: :going) %>
-            <%= link_to "Ungoing", response_event_path(@event, event_resonse: :clear), method: :put %>
-        <% else %>
-            <%= link_to "Going", response_event_path(@event, event_resonse: :going), method: :put %>
-        <% end %>
+        <div class='response-buttons'>
+            <% if current_user.liked?(@event, vote_scope: :going) %>
+                <%= link_to "Ungoing", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+            <% else %>
+                <%= link_to "Going", response_event_path(@event, event_resonse: :going), method: :put, class: 'event_response'  %>
+            <% end %>
 
-        <% @going_users.each do |i| %>
-            <p><%= i.name %></p>
-        <% end %>
+            <% if current_user.liked?(@event, vote_scope: :mabey) %>
+                <%= link_to "Unmabey", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+            <% else %>
+                <%= link_to "Mabey", response_event_path(@event, event_resonse: :mabey), method: :put, class: 'event_response'   %>
+            <% end %>
 
-        <% if current_user.liked?(@event, vote_scope: :mabey) %>
-            <%= link_to "Unmabey", response_event_path(@event, event_resonse: :clear), method: :put %>
-        <% else %>
-            <%= link_to "Mabey", response_event_path(@event, event_resonse: :mabey), method: :put %>
-        <% end %>
+            <% if current_user.liked?(@event, vote_scope: :cant) %>
+                <%= link_to "Un-Cant go", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+            <% else %>
+                <%= link_to "Cant Go", response_event_path(@event, event_resonse: :cant), method: :put, class: 'event_response'  %>
+            <% end %>
 
-        <% @mabey_users.each do |i| %>
-            <p><%= i.name %></p>
-        <% end %>
+            <button id='myBtn'>View Responses</button>
 
-        <% if current_user.liked?(@event, vote_scope: :cant) %>
-            <%= link_to "Un-Cant go", response_event_path(@event, event_resonse: :clear), method: :put %>
-        <% else %>
-            <%= link_to "Cant Go", response_event_path(@event, event_resonse: :cant), method: :put %>
-        <% end %>
+        </div>
 
-        <% @cant_users.each do |i| %>
-            <p><%= i.name %></p>
-        <% end %>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 style='padding:2em;margin:0;text-align:center;border-bottom:0.3em solid var(--accent-colour)'>Responses</h3>
+                <section class='model-section'>
+                    <div>
+                        <h4>Going</h4>
+                        <ul>
+                            <% @going_users.each do |i| %>
+                                <li><%= i.name %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Mabey</h4>
+                        <ul>
+                            <% @mabey_users.each do |i| %>
+                                <li><%= i.name %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Can't Go</h4>
+                        <ul>
+                            <% @cant_users.each do |i| %>
+                                <li><%= i.name %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+        </div>
 
         <% if current_user.admin %>
             <%= link_to "Edit", edit_event_path(@event) %>
@@ -40,5 +71,33 @@
         <% end %>
     <% end %>
 
-    <%= link_to "Back", events_path %>
+    <%= link_to "< Back", events_path, class: 'event-back' %>
 </div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
