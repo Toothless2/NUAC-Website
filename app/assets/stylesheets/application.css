@@ -25,6 +25,13 @@
     transition: all 0.5s;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+}
+
 .field_with_errors{
     background-color: transparent;
     display: inherit;
@@ -87,6 +94,12 @@ pre {
     text-decoration: underline;
 }
 
+.navbar {
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 0;
+}
+
  .navbar ul {
      list-style: none;
      margin: 0;
@@ -127,4 +140,15 @@ pre {
 
 .navbar ul li:first-child a:hover{
     background-color: transparent;
+}
+
+.loginbuttons {
+    position: absolute;
+    width: auto;
+    margin: 3em;
+    right: 0;
+}
+
+footer p{
+    padding: 0 3em;
 }
