@@ -11,15 +11,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= render 'layouts/logginheader'%>
-    <%= render 'layouts/navbar'%>
-    <div class='container'>
-      <%= yield %>
+    <div id='notifications'>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
     </div>
+    <%= render 'layouts/logginheader'%>
+    <div id='content-flex'>
+      <%= render 'layouts/navbar'%>
+      <div class='container'>
+        <%= yield %>
+      </div>
 
-    <%= render 'layouts/footer'%>
+      <%= render 'layouts/footer'%>
+    </div>
   </body>
 
 </html>
