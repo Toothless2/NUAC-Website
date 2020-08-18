@@ -25,6 +25,10 @@
     transition: all 0.5s;
 }
 
+html {
+    min-width: 320px;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -127,7 +131,7 @@ pre {
     width: 15em;
 }
 
-.navbar a {
+.navbar a, #mobile-nav-content a {
     text-decoration: none;
     padding: 20px 5px;
     display: inline-block;
@@ -138,7 +142,7 @@ pre {
     color: black;
  }
 
- .navbar a:hover {
+ .navbar a:hover, #mobile-nav-content a:hover {
      background-color: var(--accent-colour);
      color: white;
  }
@@ -147,7 +151,7 @@ pre {
      z-index: 1;
  }
 
-.navbar ul li:first-child a:hover{
+.navbar ul li:first-child a:hover, #mobile-nav-content ul li:first-child a:hover {
     background-color: transparent;
 }
 
@@ -167,13 +171,104 @@ footer p{
     padding: 0 3em;
 }
 
+.mobile-nav{
+    display: none;
+}
+
 @media (max-width: 1024px) {
     #content-flex {
-        background-color: green;
         padding-top: 3em;
     }
 
     .navbar img {
         height: 7em;
+    }
+}
+
+@media (max-width: 666px) {
+    #content-flex {
+        padding-top: 6em;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .mobile-nav{
+        display: block;
+        position: absolute;
+        top: 3em;
+        left: 3em;
+    }
+
+    #mobile-nav-button {
+        z-index: 50;
+        width: 50px;
+        height: 6px;
+        background-color: var(--accent-colour);
+        border-radius: 5px;
+        transition: all .5s ease-in-out;
+    }
+
+    #mobile-nav-button::before, #mobile-nav-button::after {
+        content: ' ';
+        position: absolute;
+        width: 50px;
+        height: 6px;
+        background-color: var(--accent-colour);
+        border-radius: 5px;
+        transition: all .5s ease-in-out;
+    }
+
+    #mobile-nav-button::before {
+        transform: translateY(-16px);
+    }
+
+    #mobile-nav-button::after {
+        transform: translateY(16px);
+    }
+
+    #mobile-nav-button.open::before {
+        transform: rotate(45deg);
+    }
+
+    #mobile-nav-button.open::after {
+        transform: rotate(-45deg);
+    }
+
+    #mobile-nav-button.open {
+        background-color: transparent;
+    }
+
+    #mobile-nav-content {
+        z-index: 51;
+        position: fixed;
+
+        border: 3px solid var(--accent-colour);
+        border-radius: 2em;
+        padding: 2em;
+        background-color: white;
+
+        width: 90%;
+
+        top: 8em;
+
+        left: 50%;
+        margin-left: calc(-1 * (45%));
+    }
+
+    #mobile-nav-content ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #mobile-nav-content img {
+        width: 9.5em;
     }
 }

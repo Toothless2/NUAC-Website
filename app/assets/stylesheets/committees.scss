@@ -97,3 +97,20 @@
       background-color: white;
       color: var(--accent-colour);
   }
+
+  @media (max-width: 666px){
+      .committee-form input[type=text], .committee-form textarea, .committee-form .committee_name, .committee-form .committee_role {
+          width: 100%;
+      }
+
+      .committee-form .form-actions{
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+
+          *{
+              margin: 0;
+              margin-top: 1em;
+          }
+      }
+  }

@@ -127,3 +127,13 @@
 .post-display th {
     color: white;
 }
+
+@media (max-width: 666px) {
+    .form-header{
+        flex-direction: column;
+    }
+
+    #post_title, .post_title{
+        width: 100%;
+    }
+}

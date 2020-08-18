@@ -12,3 +12,38 @@
           <li><%= link_to "Contact Us", contactus_path %></li>
         </ul>
       </nav>
+
+      <nav class='mobile-nav'>
+        <div id='mobile-nav-button'></div>
+
+        <div id='mobile-nav-content' class='nav-content'>
+          <ul>
+            <li><%= link_to root_path do%>
+                <img src=<%= asset_path 'Logo.png' %>>
+                <%end%>
+            </li>
+            <li><%= link_to "About Us", aboutus_path %></li>
+            <li><%= link_to "Events & Calender", events_path %></li>
+            <li><%= link_to "Club Records", records_path %></li>
+            <li><%= link_to "Alumni", alumni_path %></li>
+            <li><%= link_to "Contact Us", contactus_path %></li>
+          </ul>
+        </div>
+      </nav>
+
+      <script>
+      var button = document.getElementById("mobile-nav-button")
+      var content = document.getElementById("mobile-nav-content")
+      content.style.display = "none"
+
+      button.onclick = function() {
+        if (content.style.display != "none"){
+          button.classList.remove("open");
+          content.style.display = "none";
+        }else{
+          button.classList.add("open");
+          content.style.display = "block";
+        }
+
+        };
+      </script>

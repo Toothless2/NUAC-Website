@@ -40,14 +40,14 @@
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 25em;
+    width: 90%;
     border: 2px solid var(--accent-colour);
     border-radius: 1em;
     outline: none;
   }
 
   .contact-form textarea {
-      width: calc(50em + 10px);
+      width: calc(100%);
       height: 13em;
       resize: none;
   }
@@ -60,4 +60,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+  }
+
+  @media (max-width: 844px)
+  {
+      .contact-form form{
+          display: flex;
+          flex-direction: column;
+      }
+  }
+
+  @media(max-width: 666px) {
+      .nameemaildiv{
+          display: flex;
+          flex-direction: column    ;
+      }
   }

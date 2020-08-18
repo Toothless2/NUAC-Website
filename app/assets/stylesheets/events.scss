@@ -194,3 +194,13 @@
           margin-right: 5em;
       }
   }
+
+  @media (max-width: 666px) {
+      .event_title, .event_date {
+          width: 100%;
+      }
+
+      #event_title {
+          width: 100%;
+      }
+  }
