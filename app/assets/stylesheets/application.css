@@ -166,3 +166,14 @@ footer {
 footer p{
     padding: 0 3em;
 }
+
+@media (max-width: 1024px) {
+    #content-flex {
+        background-color: green;
+        padding-top: 3em;
+    }
+
+    .navbar img {
+        height: 7em;
+    }
+}

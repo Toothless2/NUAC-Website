@@ -6,6 +6,7 @@
     max-width: 100%;
     margin: 0 auto;
     margin-top: 5em;
+    margin-right: 4em;
 }
 
 .timeline::before {
@@ -186,4 +187,10 @@
     border-radius: 1em;
     padding: 1em;
     background-color: #f6f6f6;
+  }
+
+  @media (max-width: 1024px) {
+      .timeline {
+          margin-right: 5em;
+      }
   }
