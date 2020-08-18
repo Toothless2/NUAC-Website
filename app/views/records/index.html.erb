@@ -1,7 +1,7 @@
 <div class='records'>
   <style>
   .hidden {
-    display: none;
+    display: none !important;
   }
   </style>
 
@@ -23,7 +23,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr></tr> <!-- Needs to be here or the table gets funky -->
         <% @records.each do |record| %>
           <%= render partial: 'recorddispaly', locals: { record: record} %>
         <%end%>
