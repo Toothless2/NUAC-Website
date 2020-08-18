@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :user_confirmed, only: [:create, :destroy]
+  before_action :user_confirmed?, only: [:create, :destroy]
   before_action :set_record, only: [ :destroy]
   before_action :check_editor, only: [:edit, :update, :destroy]
 

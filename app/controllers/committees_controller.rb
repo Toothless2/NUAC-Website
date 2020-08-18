@@ -1,6 +1,6 @@
 class CommitteesController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :require_admin
+  before_action :authenticate_user!
+  before_action :require_admin
   before_action :set_committee, only: [ :edit, :update, :destroy]
 
   # GET /committees/new
