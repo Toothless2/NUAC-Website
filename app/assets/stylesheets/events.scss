@@ -18,7 +18,6 @@
     border: 0.6em solid var(--accent-colour);
     background-color: var(--accent-colour);
     left: 2.68em;
-    z-index: 99;
     top: -3.1em;
 }
 
@@ -51,7 +50,6 @@
     border-radius: 1em;
     top: 1.3em;
     left: -4.9em;
-    z-index: 99;
 }
 
 .timeline-container::before {
