@@ -242,19 +242,16 @@ footer p{
 
     #mobile-nav-content {
         z-index: 51;
-        position: fixed;
+        position: absolute;
 
         border: 3px solid var(--accent-colour);
         border-radius: 2em;
         padding: 2em;
         background-color: white;
 
-        width: 90%;
-
         top: 8em;
 
-        left: 50%;
-        margin-left: calc(-1 * (45%));
+        width: 30em;
     }
 
     #mobile-nav-content ul{
