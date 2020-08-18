@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   resources :posts
   resources :page_contents, only: [:edit, :update, :new, :create]
   resources :records, only: [:index, :create, :destroy]
+  
+  delete 'user_soft_delete/:id', to: 'admin_pannel#soft_delete', as: 'user_soft_delete'
+  delete 'user_hard_delete/:id', to: 'admin_pannel#hard_delete', as: 'user_hard_delete'
+
+  resources :admin_pannel, only: [:index]
 
   resources :events do
     member do

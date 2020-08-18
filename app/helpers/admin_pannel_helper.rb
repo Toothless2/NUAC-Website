@@ -1,0 +1,2 @@
+module AdminPannelHelper
+end
