@@ -1,2 +1,2 @@
 release: rake db:migrate
-relaase: heroku restart
+release: heroku restart

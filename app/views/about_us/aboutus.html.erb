@@ -22,6 +22,6 @@
     Newcastle-Upon-Tyne<br/>
     NE12 8AD<br/>
     </address>
-    Email: <%= mail_to 'archery@newcastle.ac.uk'%>
+    Email: <%= mail_to "#{ENV['CONTACT_EMAIL']}" %>
   </div>
 </div>
