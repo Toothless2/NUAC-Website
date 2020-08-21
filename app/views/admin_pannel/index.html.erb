@@ -1,8 +1,19 @@
-<h1>Manage Users</h1>
+<h2>Other Functions</h2>
+<p>Disable User Signups</p>
+<hr/>
+<h2>Manage Users</h2>
 <ul>
 <% @users.each do |u| %>
+    <% if u.user.admin %>
+        <% next %>
+    <% end %>
+
     <li>
-        <%= u.name %> | <%= link_to "Soft Delete", user_soft_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User with removing any records. Are you Sure?" } %> | | <%= link_to "Hard Delete", user_hard_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User and any records. Are you Sure?" } %>
+        <%= u.name %>
+        <% if u.user != nil %>
+         | <%= link_to "Soft Delete", user_soft_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User with removing any records. Are you Sure?" } %>
+        <% end %>
+        | <%= link_to "Hard Delete", user_hard_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User and any records. Are you Sure?" } %>
     </li>
 <% end %>
 </ul>

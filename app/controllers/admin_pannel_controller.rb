@@ -3,21 +3,20 @@ class AdminPannelController < ApplicationController
   before_action :require_admin
 
   def index
-    @users = User.all
+    @users = RecordName.all
   end
 
   def soft_delete
-    u = User.find(allowed)
-    u.destroy
+    rn = RecordName.find(allowed)
+    rn.user.destroy
 
     redrect_to admin_pannel_index_path
   end
 
   def hard_delete
-    u = User.find(allowed)
-
-    u.record_name.destroy
-    u.destroy
+    rn = RecordName.find(allowed)
+    rn.user.destroy
+    rn.destroy
     
     redrect_to admin_pannel_index_path
   end
