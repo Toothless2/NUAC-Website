@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   delete 'user_soft_delete/:id', to: 'admin_pannel#soft_delete', as: 'user_soft_delete'
   delete 'user_hard_delete/:id', to: 'admin_pannel#hard_delete', as: 'user_hard_delete'
+  put 'io_signups', to: 'admin_pannel#io_signups', as: 'io_signups'
 
   resources :admin_pannel, only: [:index]
 

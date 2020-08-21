@@ -10,7 +10,7 @@ class AdminPannelController < ApplicationController
     rn = RecordName.find(allowed)
     rn.user.destroy
 
-    redrect_to admin_pannel_index_path
+    redirect_to admin_pannel_index_path
   end
 
   def hard_delete
@@ -18,7 +18,17 @@ class AdminPannelController < ApplicationController
     rn.user.destroy
     rn.destroy
     
-    redrect_to admin_pannel_index_path
+    redirect_to admin_pannel_index_path
+  end
+
+  def io_signups
+    en = Signup.first_or_create
+
+    en.enabled = !en.enabled
+
+    en.save
+
+    redirect_to admin_pannel_index_path
   end
 
   private

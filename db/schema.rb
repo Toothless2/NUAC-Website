@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_121746) do
+ActiveRecord::Schema.define(version: 2020_08_21_111751) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(version: 2020_08_18_121746) do
     t.index ["achived_at"], name: "index_records_on_achived_at"
     t.index ["location"], name: "index_records_on_location"
     t.index ["record_name_id"], name: "index_records_on_record_name_id"
+  end
+
+  create_table "signups", force: :cascade do |t|
+    t.boolean "enabled", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

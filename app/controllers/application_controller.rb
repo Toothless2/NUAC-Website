@@ -4,8 +4,13 @@ class ApplicationController < ActionController::Base
     helper_method :admin_user?
     helper_method :page_content_helper
     helper_method :user_confired?
+    helper_method :can_sign_up?
     
     private
+    def can_sign_up?
+      Signup.first == nil || Signup.first.enabled == true
+    end
+
     def page_content_helper(pagename)
         PageContent.find_by(page: pagename).nil? ? new_page_content_path(page: pagename) : edit_page_content_path(PageContent.find_by(page: pagename))
     end

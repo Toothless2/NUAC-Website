@@ -1,5 +1,5 @@
 <h2>Other Functions</h2>
-<p>Disable User Signups</p>
+<p><%= link_to "Disable/Enable User Signups", io_signups_path, method: :put %> | Currently: <%= Signup.first == nil || Signup.first.enabled ? "Enabled" : "Disabled" %></p>
 <hr/>
 <h2>Manage Users</h2>
 <ul>
