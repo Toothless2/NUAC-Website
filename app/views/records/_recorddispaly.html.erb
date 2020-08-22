@@ -5,7 +5,7 @@
         <%end%>
     </td>
     <td title="Score"><%= record.score %></td>
-    <td title="Round"><%= record.round.to_s.titlecase %></td>
+    <td title="Round"><%= record.round.to_s.titlecase.scan(/[A-Z][a-z]+|[0-9]+/).join(" ") %></td>
     <td title="Bowstyle"><%= record.bowstyle.to_s.titlecase %></td>
     <td title="Date"><%= record.achived_at.strftime("%e/%-m/%Y") %></td>
     <td title="Academic Year"><%= record.academic_year_string %></td>

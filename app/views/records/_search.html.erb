@@ -1,7 +1,7 @@
 <%= simple_form_for(:search, url: records_path, method: :get) do |f| %>
   <div class="form-inputs">
     <div class='.sin'>
-    <%= f.input :round, required: false, collection: Record.rounds, value_method: :first, label_method: :first, selected: (params[:search].nil? ? :portsmouth : params[:search][:round]) %>
+    <%= f.input :round, required: false, collection: records_round_format, value_method: :first, label_method: :second, selected: (params[:search].nil? ? :portsmouth : params[:search][:round]) %>
     </div>
     <div class='.sin'>
     <%= f.input :bowstyle, required: false, collection: Record.bowstyles, value_method: :first, label_method: :first, selected: (params[:search].nil? ? :recurve : params[:search][:bowstyle]) %>
