@@ -4,6 +4,7 @@ class AdminPannelController < ApplicationController
 
   def index
     @users = RecordName.all
+    @record = Record.new
   end
 
   def soft_delete
@@ -31,8 +32,24 @@ class AdminPannelController < ApplicationController
     redirect_to admin_pannel_index_path
   end
 
+  def admin_save_record
+    @record = Record.new(record_params)
+
+    respond_to do |format|
+      if @record.save
+        format.html { redirect_to admin_pannel_index_path, notice: 'Record was successfully created.' }
+      else
+        format.html { redirect_to admin_pannel_index_path, notice: 'Record addition failed' }
+      end
+    end
+  end
+
   private
   def allowed
     params.required(:id)
+  end
+
+  def record_params
+    params.require(:record).permit(:record_name_id, :score, :round, :bowstyle, :gender, :achived_at)
   end
 end
