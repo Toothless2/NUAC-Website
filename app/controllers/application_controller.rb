@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     helper_method :page_content_helper
     helper_method :user_confired?
     helper_method :can_sign_up?
+    helper_method :records_round_format
     
     private
     def can_sign_up?
@@ -35,5 +36,12 @@ class ApplicationController < ActionController::Base
         unless current_user.confirmed?
           redirect_to request.referrer
         end
-      end
+    end
+
+    def records_round_format
+      h = Hash.new
+      Record.rounds.each { |k, v| h[k] = k.scan(/[A-Z][a-z]+|[0-9]+/).join(" ") }
+
+      return h
+    end
 end

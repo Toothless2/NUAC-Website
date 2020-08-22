@@ -1,5 +1,23 @@
 <h2>Other Functions</h2>
 <p><%= link_to "Disable/Enable User Signups", io_signups_path, method: :put %> | Currently: <%= Signup.first == nil || Signup.first.enabled ? "Enabled" : "Disabled" %></p>
+
+<h3>Input new Record</h3>
+<div class='new-form'>
+    <%= simple_form_for(@record, url: admin_save_record_path) do |f| %>
+    <div class="form-inputs">
+        <%= f.input :record_name_id, collection: RecordName.all, required: true, label: 'Archer' %>
+        <%= f.input :score %>
+        <%= f.input :round, required: false, collection: records_round_format, value_method: :first, label_method: :second, selected: 0 %>
+        <%= f.input :bowstyle, required: false, collection: Record.bowstyles, value_method: :first, label_method: :first, selected: 0 %>
+        <%= f.input :gender, required: false, collection: Record.genders, value_method: :first, label_method: :first, selected: 0 %>
+        <%= f.input :achived_at, required: false, as: :string, input_html: {type: :date, value: Date.today} %>
+    </div>
+
+    <div class="form-actions">
+        <%= f.button :submit %>
+    </div>
+    <% end %>
+</div>
 <hr/>
 <h2>Manage Users</h2>
 <ul>
