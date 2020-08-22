@@ -5,7 +5,7 @@ class Record < ApplicationRecord
   validates :score, :round, :bowstyle, :achived_at, :gender, presence: true
   enum gender: { Male: "Male", Female: "Female" }
   enum bowstyle: { Recurve: 0, Compound: 1, Barebow: 2, Longbow: 3, AFB: 4 }
-  enum round: { Portsmouth: 0, Bray1: 1, Worcester: 2, Vegas: 3, Fita18: 4, York: 5, Hereford: 13, Bristol1: 6, Bristol2: 7, Bristol3: 8, Bristol4: 9, Bristol5: 10, Fita70: 11, Other: 12 }
+  enum round: { Portsmouth: 0, Bray1: 1, Worcester: 2, Vegas: 3, Fita18: 4, York: 5, Hereford: 13, Bristol1: 6, Bristol2: 7, Bristol3: 8, Bristol4: 9, Bristol5: 10, Fita70: 11, Fita60: 12, Other: 13 }
   validates :score, with: :valid_score?
 
   def name
@@ -57,13 +57,13 @@ class Record < ApplicationRecord
 
   def max_round_score
     case round
-    when 'portsmouth', 'vegas', 'fita18'
+    when 'Portsmouth', 'Vegas', 'Fita18'
       600
-    when 'bray1', 'worcester'
+    when 'Bray1', 'Worcester'
       300
-    when 'york','hereford', 'bristol1', 'bristol2', 'bristol3', 'bristol4', 'bristol5'
+    when 'York','Hereford', 'Bristol1', 'Bristol2', 'Bristol3', 'Bristol4', 'Bristol5'
       1296
-    when 'fita70'
+    when 'Fita70', 'Fita60'
       720
     else
       2 ** ([42].pack('i').size * 16 - 2) - 1
