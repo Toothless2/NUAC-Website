@@ -1,6 +1,7 @@
 class AdminPannelController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin
+  before_action :get_rn, only: [:soft_delete, :hard_delete]
 
   def index
     @users = RecordName.all
@@ -8,16 +9,14 @@ class AdminPannelController < ApplicationController
   end
 
   def soft_delete
-    rn = RecordName.find(allowed)
-    rn.user.destroy
+    @rn.user.destroy
 
     redirect_to admin_pannel_index_path
   end
 
   def hard_delete
-    rn = RecordName.find(allowed)
-    rn.user.destroy
-    rn.destroy
+    @rn.user.destroy
+    @rn.destroy
     
     redirect_to admin_pannel_index_path
   end
@@ -63,11 +62,15 @@ class AdminPannelController < ApplicationController
   end
 
   private
-  def allowed
-    params.required(:id)
-  end
+    def allowed
+      params.required(:id)
+    end
 
-  def record_params
-    params.require(:record).permit(:record_name_id, :score, :round, :bowstyle, :gender, :achived_at)
-  end
+    def record_params
+      params.require(:record).permit(:record_name_id, :score, :round, :bowstyle, :gender, :achived_at)
+    end
+
+    def get_rn
+      @rn = RecordName.find(allowed)
+    end
 end
