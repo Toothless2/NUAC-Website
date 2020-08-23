@@ -4,68 +4,80 @@
 <% end %>
 
 <div class='timeline'>
-    <% @events.sort_by(&:date).each do |e| %>
-        <div>
-            <article class='timeline-container'>
-                <div class='content'>
-                    <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P On %B %_d#{ date_suffix(e.date.day) }, %Y") %></h2>
-                    <div style='max-height:10em;overflow:hidden;text-overflow:ellipsis;'><%= markdown_body(e.description) %></div>
+    <% unless @events.empty? %>
+        <% @events.sort_by(&:date).each do |e| %>
+            <div>
+                <article class='timeline-container'>
+                    <div class='content'>
+                        <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P On %B %_d#{ date_suffix(e.date.day) }, %Y") %></h2>
+                        <div style='max-height:10em;overflow:hidden;text-overflow:ellipsis;'><%= markdown_body(e.description) %></div>
 
-                    <% if user_signed_in? %>
-                        <div class='response-buttons'>
-                            <% if current_user.liked?(e, vote_scope: :going) %>
-                                <%= link_to "Going", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
-                            <% else %>
-                                <%= link_to "Going", response_event_path(e, event_resonse: :going), method: :put, class: 'event_response' %>
-                            <% end %>
+                        <% if user_signed_in? %>
+                            <div class='response-buttons'>
+                                <% if current_user.liked?(e, vote_scope: :going) %>
+                                    <%= link_to "Going", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
+                                <% else %>
+                                    <%= link_to "Going", response_event_path(e, event_resonse: :going), method: :put, class: 'event_response' %>
+                                <% end %>
 
-                            <% if current_user.liked?(e, vote_scope: :mabey) %>
-                                <%= link_to "Mabey", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
-                            <% else %>
-                                <%= link_to "Mabey", response_event_path(e, event_resonse: :mabey), method: :put, class: 'event_response' %>
-                            <% end %>
+                                <% if current_user.liked?(e, vote_scope: :mabey) %>
+                                    <%= link_to "Mabey", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
+                                <% else %>
+                                    <%= link_to "Mabey", response_event_path(e, event_resonse: :mabey), method: :put, class: 'event_response' %>
+                                <% end %>
 
-                            <% if current_user.liked?(e, vote_scope: :cant) %>
-                                <%= link_to "Can't Go", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
-                            <% else %>
-                                <%= link_to "Can't Go", response_event_path(e, event_resonse: :cant), method: :put, class: 'event_response' %>
-                            <% end %>
-                        </div>
+                                <% if current_user.liked?(e, vote_scope: :cant) %>
+                                    <%= link_to "Can't Go", response_event_path(e, event_resonse: :clear), method: :put, class: 'event_response event_response_selected' %>
+                                <% else %>
+                                    <%= link_to "Can't Go", response_event_path(e, event_resonse: :cant), method: :put, class: 'event_response' %>
+                                <% end %>
+                            </div>
 
-                        <% if committee_user? %>
+                            <% if committee_user? %>
+                                <div class='event-control-buttons'>
+                                    <%= link_to "Edit", edit_event_path(e) %> | 
+                                    <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %> | 
+                            <%end%>
+                        <% end %>
+
+                        <% if !committee_user? %>
                             <div class='event-control-buttons'>
-                                <%= link_to "Edit", edit_event_path(e) %> | 
-                                <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %> | 
-                        <%end%>
-                    <% end %>
-
-                    <% if !committee_user? %>
-                        <div class='event-control-buttons'>
-                    <% end %>
-                        <%= link_to "More >", event_path(e) %>
+                        <% end %>
+                            <%= link_to "More >", event_path(e) %>
+                        </div>
                     </div>
-                </div>
-            </article>
-        </div>
-    <% end %>
+                </article>
+            </div>
+            <% end %>
+        <% else %>
+            <div>
+                <article class='timeline-container'>
+                    <div class='content'>
+                        <p>Nothing Upcomming 😢</p>
+                    </div>
+                </article>
+            </div>    
+        <% end %>
 </div>
 
 <br />
 <br />
 
-<h1 style='text-align:center'>Past Events!</h1>
-<div class='timeline'>
-    <% @pastEvents.sort_by(&:date).each do |e| %>
-        <div>
-            <article class='timeline-container'>
-                <div class='content'>
-                    <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P On %B %_d#{ date_suffix(e.date.day) }, %Y") %></h2>
-                    <div style='max-height:10em;overflow:hidden;text-overflow:ellipsis;'><%= markdown_body(e.description) %></div>
-                    <div class='event-control-buttons'>
-                        <%= link_to "More >", event_path(e) %>
+        <% unless @pastEvents.empty? %>
+            <h1 style='text-align:center'>Past Events!</h1>
+            <div class='timeline'>
+                <% @pastEvents.sort_by(&:date).each do |e| %>
+                    <div>
+                        <article class='timeline-container'>
+                            <div class='content'>
+                                <h2><%= e.title %> @ <%= e.date.strftime("%l:%M%P On %B %_d#{ date_suffix(e.date.day) }, %Y") %></h2>
+                                <div style='max-height:10em;overflow:hidden;text-overflow:ellipsis;'><%= markdown_body(e.description) %></div>
+                                <div class='event-control-buttons'>
+                                    <%= link_to "More >", event_path(e) %>
+                                </div>
+                            </div>
+                        </article>
                     </div>
-                </div>
-            </article>
-        </div>
-    <% end %>
-</div>
+                <% end %>
+            </div>  
+        <% end %>
