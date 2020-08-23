@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_user?
-        return user_signed_in? && current_user.admin
+        return user_signed_in? && current_user.role.admin
     end
 
     def require_admin
