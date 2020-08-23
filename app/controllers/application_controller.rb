@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
     def markdown_body(text)
         @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hardwrap: false), tables: true, superscript: true, highlight: true, strikethrough: true, autolink: true, space_after_headers: true, underline: true)
-        @markdown.render(text)
+        @markdown.render(text).html_safe
     end
 
     def admin_user?

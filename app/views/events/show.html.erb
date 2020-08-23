@@ -1,6 +1,6 @@
 <div>
     <h2><%= @event.title %> @ <%= @event.date.strftime("%l:%M%P On %B %_d#{ date_suffix(@event.date.day) }, %Y") %></h2>
-    <div><%= markdown_body(@event.description).html_safe %></div>
+    <div><%= markdown_body(@event.description) %></div>
 
     <% if user_signed_in? %>
         <div class='response-buttons'>
