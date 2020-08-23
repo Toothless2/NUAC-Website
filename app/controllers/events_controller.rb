@@ -1,15 +1,15 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :require_permission, except: [:show, :index, :event_response]
+    before_action :require_committee, except: [:show, :index, :event_response]
     before_action :set_post, only: [:show, :edit, :update, :destroy, :event_response]
     before_action :user_confirmed?, only: [:event_response]
     before_action :can_respond?, only: [:event_response]
 
     helper_method :date_suffix
-    helper_method :has_perms?
 
     def index
-        @events = Event.where('date > ?', DateTime.yesterday)
+        @events = Event.where('date > ?', DateTime.now)
+        @pastEvents = Event.where('date <= ?', DateTime.now)
     end
 
     def show
@@ -70,52 +70,46 @@ class EventsController < ApplicationController
     end
 
     private
-    def event_params
-        params.require(:event).permit(:title, :description, :date)
-    end
-
-    def set_post
-        @event = Event.find(params[:id])
-    end
-
-    def going
-        @event.liked_by current_user, vote_scope: :going
-    end
-
-    def mabey
-        @event.liked_by current_user, vote_scope: :mabey
-    end
-
-    def cant
-        @event.liked_by current_user, vote_scope: :cant
-    end
-
-    def can_respond?
-        unless @event.date >= DateTime.now
-            redirect_to request.referrer
+        def committee_user?
+            super || current_user&.role&.canEvent
         end
-    end
 
-    def date_suffix(d)
-        case d % 10
-            when 1
-                'st'
-            when 2
-                'nd'
-            when 3
-                'rd'
-            else
-                'th'
+        def event_params
+            params.require(:event).permit(:title, :description, :date)
         end
-    end
 
-    def has_perms?
-        user_signed_in? && (current_user.role.admin || current_user.role.canEvent)
-    end
+        def set_post
+            @event = Event.find(params[:id])
+        end
 
-    def require_permission
-      unless has_perms?
-        redirect_to request.referrer
-      end
-    end
+        def going
+            @event.liked_by current_user, vote_scope: :going
+        end
+
+        def mabey
+            @event.liked_by current_user, vote_scope: :mabey
+        end
+
+        def cant
+            @event.liked_by current_user, vote_scope: :cant
+        end
+
+        def can_respond?
+            unless @event.date >= DateTime.now
+                redirect_to request.referrer
+            end
+        end
+
+        def date_suffix(d)
+            case d % 10
+                when 1
+                    'ˢᵗ'
+                when 2
+                    'ⁿᵈ'
+                when 3
+                    'ʳᵈ'
+                else
+                    'ᵗʰ'
+            end
+        end
 end

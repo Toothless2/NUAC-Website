@@ -1,29 +1,29 @@
 <div>
     <h2><%= @event.title %> @ <%= @event.date.strftime("%l:%M%P On %B %_d#{ date_suffix(@event.date.day) }, %Y") %></h2>
-    <div><%= markdown_body(@event.description).html_safe %></div>
+    <div><%= markdown_body(@event.description) %></div>
 
     <% if user_signed_in? %>
         <div class='response-buttons'>
-            <% if current_user.liked?(@event, vote_scope: :going) %>
-                <%= link_to "Ungoing", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
-            <% else %>
-                <%= link_to "Going", response_event_path(@event, event_resonse: :going), method: :put, class: 'event_response'  %>
-            <% end %>
+        <% if @event.date > DateTime.now %>
+                <% if current_user.liked?(@event, vote_scope: :going) %>
+                    <%= link_to "Ungoing", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+                <% else %>
+                    <%= link_to "Going", response_event_path(@event, event_resonse: :going), method: :put, class: 'event_response'  %>
+                <% end %>
 
-            <% if current_user.liked?(@event, vote_scope: :mabey) %>
-                <%= link_to "Unmabey", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
-            <% else %>
-                <%= link_to "Mabey", response_event_path(@event, event_resonse: :mabey), method: :put, class: 'event_response'   %>
-            <% end %>
+                <% if current_user.liked?(@event, vote_scope: :mabey) %>
+                    <%= link_to "Unmabey", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+                <% else %>
+                    <%= link_to "Mabey", response_event_path(@event, event_resonse: :mabey), method: :put, class: 'event_response'   %>
+                <% end %>
 
-            <% if current_user.liked?(@event, vote_scope: :cant) %>
-                <%= link_to "Un-Cant go", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
-            <% else %>
-                <%= link_to "Cant Go", response_event_path(@event, event_resonse: :cant), method: :put, class: 'event_response'  %>
-            <% end %>
-
+                <% if current_user.liked?(@event, vote_scope: :cant) %>
+                    <%= link_to "Un-Cant go", response_event_path(@event, event_resonse: :clear), method: :put, class: 'event_response event_response_selected'  %>
+                <% else %>
+                    <%= link_to "Cant Go", response_event_path(@event, event_resonse: :cant), method: :put, class: 'event_response'  %>
+                <% end %>
+        <% end %>
             <button id='myBtn'>View Responses</button>
-
         </div>
 
         <!-- The Modal -->
@@ -65,9 +65,9 @@
 
         </div>
 
-        <% if has_perms? %>
-            <%= link_to "Edit", edit_event_path(@event) %>
-            <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% if committee_user? && @event.date > DateTime.now  %>
+            <%= link_to "Edit", edit_event_path(@event), class: 'event-back' %> | 
+            <%= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure?" }, class: 'event-back' %> | 
         <% end %>
     <% end %>
 

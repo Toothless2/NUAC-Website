@@ -1,9 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :require_permission, except: [:show, :index]
+  before_action :require_committee, except: [:show, :index]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
-  helper_method :has_perms?
 
   # GET /posts
   # GET /posts.json
@@ -76,13 +74,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :tag, :body)
     end
 
-    def has_perms?
-      user_signed_in? && (current_user.role.admin || current_user.role.canPost)
-    end
-
-    def require_permission
-      unless has_perms?
-        redirect_to request.referrer
-      end
+    def committee_user?
+      super() || current_user&.role&.canPost
     end
 end

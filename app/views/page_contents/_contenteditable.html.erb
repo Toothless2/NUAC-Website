@@ -3,7 +3,7 @@
 <%end%>
 <div class='content-editable  post-display'>
   <% if PageContent.find_by(page: page)%>
-    <%= markdown_body(PageContent.find_by(page: page).body).html_safe %>
+    <%= markdown_body(PageContent.find_by(page: page).body) %>
   <%else%>
     Welcome to the NUAC Website!
   <%end%>

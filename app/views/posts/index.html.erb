@@ -1,7 +1,9 @@
 <%= render partial: 'page_contents/contenteditable', locals: { page: 'home' } %>
+  <h1 style='display:inline-block'>News Feed</h1>
+  <% if committee_user? %>
+    <%= link_to '🖋 Create New', new_post_path, method: :get, class:'link-button news-new-button' %>
+  <%end%>
 
-<h1 style='display:inline-block'>News Feed</h1>
-<% if has_perms? %>
-  <%= link_to '🖋 Create New', new_post_path, method: :get, class:'link-button news-new-button' %>
-<%end%>
-<%= render collection: @posts, as: :post, partial: 'postIndex'%>
+  <% unless @posts.empty? %>
+    <%= render collection: @posts, as: :post, partial: 'postIndex'%>
+  <% end %>

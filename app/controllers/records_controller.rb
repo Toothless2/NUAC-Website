@@ -46,7 +46,7 @@ class RecordsController < ApplicationController
 
   private
     def can_edit_record(record)
-      user_signed_in? && (current_user.role.admin || record.record_name.user.id == current_user.id)
+      admin_user? || record.record_name.user.id == current_user&.id
     end
 
     def check_editor
