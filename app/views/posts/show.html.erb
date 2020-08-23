@@ -5,9 +5,9 @@
     <%= markdown_body(@post.body) %>
   </div>
 
-  <% if admin_user? %>
-    <%= link_to 'Edit', edit_post_path(@post) %> |
-    <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% if committee_user? %>
+    <%= link_to 'Edit', edit_post_path(@post) %> | 
+    <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %> | 
   <%end%>
   <%= link_to 'Back', posts_path %>
 </article>

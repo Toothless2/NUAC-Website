@@ -5,7 +5,7 @@
         <%= markdown_body(post.body) %>
     </div>
     <div class='news-feed-article-buttons'>
-        <% if has_perms? %>
+        <% if committee_user? %>
             <%= link_to "Delete", post_path(post), method: :delete %>
             <%= link_to "Edit", edit_post_path(post)%>
         <%end%>
