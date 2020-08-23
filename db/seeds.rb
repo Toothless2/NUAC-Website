@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first
 
 Role.create([{ name: "user", admin: false, canPost: false, canEvent: false, canEditHeader: false }, { name: "committee", admin: false, canPost: true, canEvent: true, canEditHeader: false }, { name: "admin", admin: true, canPost: true, canEvent: true, canEditHeader: true }])
+
+User.all.each{ |u| u.role = Role.find_by(name: 'user'); u.save}
