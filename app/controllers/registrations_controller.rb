@@ -21,7 +21,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def sign_up_params
-        params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+        val = params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+        val[:role] = Role.find_by(name: 'user')
+
+        return val
     end
 
     def account_update_params

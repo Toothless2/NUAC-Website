@@ -1,5 +1,5 @@
 <h1 style='text-align:center'>Upcomming Events!</h1>
-<% if user_signed_in? && current_user.admin %>
+<% if has_perms? %>
     <%= link_to "Create Event", new_event_path %>
 <% end %>
 
@@ -32,14 +32,14 @@
                             <% end %>
                         </div>
 
-                        <% if current_user.admin %>
+                        <% if has_perms? %>
                             <div class='event-control-buttons'>
                                 <%= link_to "Edit  |", edit_event_path(e) %>
                                 <%= link_to "Delete  |", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
                         <%end%>
                     <% end %>
 
-                    <% if !user_signed_in? || !current_user.admin %>
+                    <% if !has_perms? %>
                         <div class='event-control-buttons'>
                     <% end %>
                         <%= link_to "More >", event_path(e) %>

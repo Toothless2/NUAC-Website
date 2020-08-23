@@ -5,7 +5,7 @@
         <%= markdown_body(post.body).html_safe %>
     </div>
     <div class='news-feed-article-buttons'>
-        <% if user_signed_in? && current_user.admin%>
+        <% if has_perms? %>
             <%= link_to "Delete", post_path(post), method: :delete %>
             <%= link_to "Edit", edit_post_path(post)%>
         <%end%>

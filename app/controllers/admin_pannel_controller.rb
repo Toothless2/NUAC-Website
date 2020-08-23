@@ -44,6 +44,24 @@ class AdminPannelController < ApplicationController
     end
   end
 
+  def user_update_role
+    @user = User.find(allowed)
+
+    if (@user == nil)
+      return
+    end
+
+    if(@user.role.name == 'committee')
+      @user.role = Role.find_by(name: 'user')
+    else
+      @user.role = Role.find_by(name: 'committee')
+    end
+
+    @user.save
+
+    redirect_to admin_pannel_index_path
+  end
+
   private
   def allowed
     params.required(:id)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_111751) do
+ActiveRecord::Schema.define(version: 2020_08_23_083551) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 2020_08_21_111751) do
     t.index ["record_name_id"], name: "index_records_on_record_name_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.boolean "admin", default: false
+    t.boolean "canPost", default: false
+    t.boolean "canEvent", default: false
+    t.boolean "canEditHeader", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_roles_on_name"
+  end
+
   create_table "signups", force: :cascade do |t|
     t.boolean "enabled", default: true
     t.datetime "created_at", precision: 6, null: false
@@ -82,16 +93,17 @@ ActiveRecord::Schema.define(version: 2020_08_21_111751) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.integer "role_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   create_table "votes", force: :cascade do |t|

@@ -14,8 +14,15 @@ class User < ApplicationRecord
   has_many :records, through: :record_name
 
   acts_as_voter
+
+  belongs_to :role
+  validates :role, presence: false
   
   private
+  def after_create
+    role = Role.find_by(name: 'user')
+  end
+
   def after_confirmation # Run after user confimation
     r = RecordName.new(user: self)
     r.name = self.name

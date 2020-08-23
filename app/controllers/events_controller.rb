@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :require_admin, except: [:show, :index, :event_response]
+    before_action :require_permission, except: [:show, :index, :event_response]
     before_action :set_post, only: [:show, :edit, :update, :destroy, :event_response]
     before_action :user_confirmed?, only: [:event_response]
     before_action :can_respond?, only: [:event_response]
 
     helper_method :date_suffix
+    helper_method :has_perms?
 
     def index
         @events = Event.where('date > ?', DateTime.yesterday)
@@ -106,5 +107,15 @@ class EventsController < ApplicationController
             else
                 'th'
         end
+    end
+
+    def has_perms?
+        user_signed_in? && (current_user.role.admin || current_user.role.canEvent)
+    end
+
+    def require_permission
+      unless has_perms?
+        redirect_to request.referrer
+      end
     end
 end

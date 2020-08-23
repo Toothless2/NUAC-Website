@@ -22,7 +22,7 @@
 <h2>Manage Users</h2>
 <ul>
 <% @users.each do |u| %>
-    <% if u.user.admin %>
+    <% if u.user.role.admin %>
         <% next %>
     <% end %>
 
@@ -31,7 +31,8 @@
         <% if u.user != nil %>
          | <%= link_to "Soft Delete", user_soft_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User with removing any records. Are you Sure?" } %>
         <% end %>
-        | <%= link_to "Hard Delete", user_hard_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User and any records. Are you Sure?" } %>
+        | <%= link_to "Hard Delete", user_hard_delete_path(u.id), method: :delete, data: { confirm: "This wil remove the User and any records. Are you Sure?" } %> 
+        | <%= link_to "#{u.user.role.name == 'committee' ? 'Remove ' : 'Make '} Committee", user_update_role_path(u.user.id), method: :put %>
     </li>
 <% end %>
 </ul>

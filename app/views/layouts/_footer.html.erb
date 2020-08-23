@@ -1,4 +1,4 @@
 <footer id='footer'>
     <hr />
-    <p>Max Rose © 2020 | V4.0<%if user_signed_in? && current_user.admin %> | <%= link_to "Admin Panel", admin_pannel_index_path %> <% end %></p>
+    <p>Max Rose © 2020 | V4.0<%if admin_user? %> | <%= link_to "Admin Panel", admin_pannel_index_path %> <% end %></p>
 </footer>
