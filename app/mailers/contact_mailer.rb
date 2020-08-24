@@ -11,7 +11,7 @@ class ContactMailer < ApplicationMailer
     mail(to: ENV["CONTACT_EMAIL"], from: @contact[:email], subject: "Website Contact - #{contact[:name]}")
   end
 
-  def content_us_user_confirm(contact)
+  def contact_us_user_confirm(contact)
     @contact = contact
 
     mail(to: @contact[:email], from: ENV["CONTACT_EMAIL"], subject: "#{@contact[:name]} thank you for contacting us!")
