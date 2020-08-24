@@ -1,0 +1,6 @@
+Name: <%= @contact[:name] %>
+Email: <%= @contact[:email] %>
+
+Thank you for contacting us, the message sent is below this line
+----------------------------------------------------------------
+<%= markdown_body(@contact[:message]) %>

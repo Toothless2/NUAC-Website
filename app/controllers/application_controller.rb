@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :markdown_body
     helper_method :admin_user?
     helper_method :page_content_helper
-    helper_method :user_confired?
+    helper_method :user_confirmed?
     helper_method :can_sign_up?
     helper_method :records_round_format
     helper_method :committee_user?
