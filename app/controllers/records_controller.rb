@@ -15,9 +15,23 @@ class RecordsController < ApplicationController
 
     @record = Record.new
 
+    if params[:filters] == 'true'
+      csvRecords = @records
+      name = 'filters'
+    elsif params[:adyear] == 'true'
+      csvRecords = Record.order(score: :desc).where(achived_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear()))
+      name = "adyear-#{Record.getCurrentAcademicYear}"
+    elsif params[:cu]
+      csvRecords = Record.order(score: :desc).where(record_name_id: current_user.record_name)
+      name = "for-#{current_user.name}"
+    else
+      csvRecords = Record.all
+      name = 'all'
+    end
+
     respond_to do |format|
       format.html
-      format.csv { send_data Record.all.to_csv, filename: "Display-Data-#{DateTime.now}.csv" }
+      format.csv { send_data csvRecords.to_csv, filename: "Display-Data-#{name}-#{DateTime.now}.csv" }
     end
   end
 

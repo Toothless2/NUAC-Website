@@ -14,11 +14,7 @@ class Record < ApplicationRecord
 
   def self.getAllAcademicYears
     Record.order(achived_at: :desc).map { |m|
-      if m.achived_at.month >= 9
-        "#{m.achived_at.year}/#{m.achived_at.year + 1}"
-      else
-        "#{m.achived_at.year - 1}/#{m.achived_at.year}"
-      end
+      m.academic_year_string
     }.uniq
   end
 
@@ -27,7 +23,15 @@ class Record < ApplicationRecord
   end
 
   def self.academicYeartoDateEnd(stringAcademic) # last day in academic year
-    Date.new(stringAcademic[5..].to_i, 8, 1)
+    Date.new(stringAcademic[5..].to_i, 8, -1)
+  end
+
+  def self.getCurrentAcademicYear
+    if Date.today.month >= 9
+      "#{Date.today.year}/#{Date.today.year + 1}"
+    else
+      "#{Date.today.year - 1}/#{Date.today.year}"
+    end
   end
 
   def academic_year_string

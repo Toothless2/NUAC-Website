@@ -39,6 +39,18 @@
       <% end %>
     </div>
   <% end %>
+
+  <hr>
+  <h2>Download Options</h2>
+    <div style='display:flex;flex-wrap:wrap;justify-content:space-around;'>
+    <%= link_to "All Records", records_path(format: :csv), class: 'button' %>
+    <%= link_to "Records with Current Filters", records_path(format: :csv, filters: :true), class: 'button' %>
+    <%= link_to "Records for Current Academic Year", records_path(format: :csv, adyear: :true), class: 'button' %>
+
+    <% if user_signed_in? %>
+    <%= link_to "Your Records", records_path(format: :csv, cu: :true), class: 'button' %>
+    <% end %>
+    </div>
 </div>
 
 <script>
