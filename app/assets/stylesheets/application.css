@@ -43,6 +43,25 @@ body{
 
 #notifications {
     position: fixed;
+    z-index: 99;
+    top: -14px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.notice {
+    background-color: aquamarine;
+    width: 100vw;
+    height: 1.4em;
+    color: black;
+}
+
+.alert {
+    background-color: maroon;
+    width: 100vw;
+    height: 1.4em;
+    color: white;
 }
 
 .field_with_errors{
