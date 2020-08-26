@@ -22,7 +22,7 @@ class RecordsController < ApplicationController
       csvRecords = Record.order(score: :desc).where(achived_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear()))
       name = "adyear-#{Record.getCurrentAcademicYear}"
     elsif params[:cu]
-      csvRecords = Record.order(score: :desc).where(record_name_id: current_user.record_name)
+      csvRecords = current_user.records
       name = "for-#{current_user.name}"
     else
       csvRecords = Record.all
