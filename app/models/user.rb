@@ -18,6 +18,10 @@ class User < ApplicationRecord
   belongs_to :role
   validates :role, presence: false
   
+  def committee?
+    role == Role.find_by(name: :committee)
+  end
+
   private
   def after_create
     role = Role.find_by(name: 'user')
