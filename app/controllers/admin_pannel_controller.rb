@@ -1,6 +1,6 @@
 class AdminPannelController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin
+  before_action :require_committee
   before_action :get_rn, only: [:soft_delete, :hard_delete]
 
   def index
@@ -62,6 +62,10 @@ class AdminPannelController < ApplicationController
   end
 
   private
+    def committee_user?
+      admin_user? || current_user&.committee?
+    end
+
     def allowed
       params.required(:id)
     end

@@ -22,7 +22,7 @@
 <h2>Manage Users</h2>
 <ul>
 <% @users.each do |u| %>
-    <% if u.user.role.admin %>
+    <% if u&.user&.role&.admin %>
         <% next %>
     <% end %>
 
