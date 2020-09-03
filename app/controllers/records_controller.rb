@@ -60,7 +60,7 @@ class RecordsController < ApplicationController
 
   private
     def can_edit_record(record)
-      admin_user? || (record.record_name.user != nil && record.record_name.user.id == current_user.id)
+      committee_user? || (record.record_name.user != nil && record.record_name.user.id == current_user.id)
     end
 
     def check_editor
@@ -81,5 +81,9 @@ class RecordsController < ApplicationController
 
     def search_params
       params[:search]
+    end
+
+    def committee_user?
+      super || current_user&.committee?
     end
 end
