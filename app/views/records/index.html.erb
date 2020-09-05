@@ -48,7 +48,7 @@
     <%= link_to "Records for Current Academic Year", records_path(format: :csv, adyear: :true), class: 'button' %>
 
     <% if user_signed_in? %>
-    <%= link_to "Your Records", records_path(format: :csv, cu: :true), class: 'button' %>
+      <%= link_to "Your Records", records_path(format: :csv, cu: :true), class: 'button' %>
     <% end %>
     </div>
 </div>
