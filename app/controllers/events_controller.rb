@@ -8,7 +8,11 @@ class EventsController < ApplicationController
     helper_method :date_suffix
 
     def index
-        @events = Event.where('date > ?', DateTime.now)
+        if current_user
+            @events = Event.where('date > ?', DateTime.now)
+        else
+            @events = []
+        end
         @pastEvents = Event.where('date <= ?', DateTime.now)
     end
 
