@@ -5,7 +5,7 @@
 
   <div>
     <h2>Current Committee
-      <% if admin_user? %>
+      <% if committee_user? %>
         <%= link_to '➕ Add Member', new_committee_path, style:'float:right;font-size:0.7em;font-weight:normal;' %>
       <% end %>
     </h2>

@@ -1,6 +1,6 @@
 class CommitteesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin
+  before_action :require_committee
   before_action :set_committee, only: [ :edit, :update, :destroy]
 
   # GET /committees/new
@@ -59,5 +59,9 @@ class CommitteesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def committee_params
       params.require(:committee).permit(:name, :role, :description)
+    end
+
+    def committee_user?
+      super || current_user&.committee?
     end
 end

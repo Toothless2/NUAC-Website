@@ -53,7 +53,7 @@
             <div>
                 <article class='timeline-container'>
                     <div class='content'>
-                        <p>Nothing Upcomming 😢</p>
+                        <p><% if user_signed_in? %>Nothing Upcomming 😢<%else%>Please <%= link_to "Sign In", new_user_session_path  %> to see upcomming events<%end%></p>
                     </div>
                 </article>
             </div>    
