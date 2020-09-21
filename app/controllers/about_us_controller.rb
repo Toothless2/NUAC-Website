@@ -1,6 +1,6 @@
 class AboutUsController < ApplicationController
   def aboutus
-    @committees = Committee.all
+    @committees = Committee.all.order(:created_at)
   end
 
   private

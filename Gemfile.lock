@@ -245,12 +245,12 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise (>= 4.7.2)
   figaro
-  jbuilder (~> 2.7)
+  jbuilder (>= 2.7)
   letter_opener
   listen (~> 3.2)
   mail_form
   pg
-  puma (~> 4.1)
+  puma (>= 4.1)
   rails (>= 6.0.3.3)
   recaptcha
   redcarpet (>= 3.5)
