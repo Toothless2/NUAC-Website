@@ -43,10 +43,12 @@ class Record < ApplicationRecord
   end
 
   def self.to_csv
+    # Attributes to get
     attributes = %w{id record_name_id name score round bowstyle achived_at academic_year_string gender}
 
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
+    c = CSV.generate(headers: true) do |csv|
+      # Headers for the CSV
+      csv << ['id', 'user id', 'name', 'score', 'round', 'bowstyle', 'achived at', 'academic year', 'gender']
 
       all.each do |user|
         csv << attributes.map{ |attr| user.send(attr) }
