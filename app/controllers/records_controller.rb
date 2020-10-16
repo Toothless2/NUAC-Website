@@ -30,7 +30,7 @@ class RecordsController < ApplicationController
     end
 
     # if user does not have a spider/woodpecker thing make one
-    if(user_signed_in? && user_confirmed? && SpiderWp.where(created_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear())).find_by(record_name: current_user.record_name) == nil)
+    if(user_signed_in? && user_confirmed? && SpiderWp.find_by(record_name: current_user.record_name).where(created_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear())) == nil)
       wp = SpiderWp.new
       wp.spider_count = 0
       wp.pecker_count = 0
