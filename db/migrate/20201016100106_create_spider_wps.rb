@@ -7,7 +7,5 @@ class CreateSpiderWps < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-
-    add_index :spider_wps, :record_name
   end
 end
