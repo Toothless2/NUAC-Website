@@ -53,6 +53,9 @@
       </thead>
       <tbody>
         <% @peckers.each do |pecker| %>
+          <% if pecker.spider_count == 0 && pecker.pecker_count == 0 && pecker.record_name.user_id != current_user&.id%>
+            <%next%>
+          <%end%>
           <%= render partial: 'peckerdispaly', locals: { pecker: pecker  } %>
         <%end%>
       </tbody>
