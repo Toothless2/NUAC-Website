@@ -29,9 +29,23 @@ class RecordsController < ApplicationController
       name = 'all'
     end
 
+    # if user does not have a spider/woodpecker thing make one
+    if(user_signed_in? && SpiderWp.where(created_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear())).find_by(record_name: current_user.record_name) == nil)
+      wp = SpiderWp.new
+      wp.spider_count = 0
+      wp.pecker_count = 0
+      wp.record_name = current_user.record_name
+      wp.save
+    end
+
+    @peckers = SpiderWp.order(spider_count: :desc).where(created_at: Record.academicYeartoDateStart(Record.getCurrentAcademicYear())..Record.academicYeartoDateEnd(Record.getCurrentAcademicYear()))
+
     respond_to do |format|
       format.html
-      format.csv { send_data csvRecords.to_csv, filename: "Display-Data-#{name}-#{DateTime.now}.csv" }
+      format.csv { 
+        send_data csvRecords.to_csv, filename: "Display-Data-#{name}-#{DateTime.now}.csv"
+        # send_data SpiderWp.all.to_csv, filename: "Display-Data-spiders-woodpeckers-#{DateTime.now}.csv"
+      }
     end
   end
 
@@ -56,6 +70,36 @@ class RecordsController < ApplicationController
     else
       destroyMessage = 'Cannot delete someone elses record!'
     end
+  end
+
+  def increment_spider
+    params = spiderwp_params
+    spider = SpiderWp.find(params[:id])
+
+    if(!(user_signed_in?) || current_user.id != spider.record_name.user_id)
+      redirect_to records_path
+      return
+    end
+
+    spider.spider_count += (params[:dir]).to_i
+    spider.save
+
+    redirect_to records_path
+  end
+
+  def increment_wp
+    params = spiderwp_params
+    wp = SpiderWp.find(params[:id])
+
+    if(!(user_signed_in?) || current_user.id != wp.record_name.user_id)
+      redirect_to records_path
+      return
+    end
+
+    wp.pecker_count += (params[:dir]).to_i
+    wp.save
+
+    redirect_to records_path
   end
 
   private
@@ -85,5 +129,9 @@ class RecordsController < ApplicationController
 
     def committee_user?
       super || current_user&.committee?
+    end
+
+    def spiderwp_params
+      params.permit(:id, :dir)
     end
 end

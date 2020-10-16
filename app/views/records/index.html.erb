@@ -41,6 +41,25 @@
   <% end %>
 
   <hr>
+
+  <div class='records-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Archer</th>
+          <th>Spiders</th>
+          <th>Woodpeckers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @peckers.each do |pecker| %>
+          <%= render partial: 'peckerdispaly', locals: { pecker: pecker  } %>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
   <h2>Download Options</h2>
     <div style='display:flex;flex-wrap:wrap;justify-content:space-around;'>
     <%= link_to "All Records", records_path(format: :csv), class: 'button' %>

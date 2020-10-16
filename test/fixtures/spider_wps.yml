@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spider: false
+  pecker: false
+
+two:
+  spider: false
+  pecker: false

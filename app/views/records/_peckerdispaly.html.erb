@@ -1,0 +1,21 @@
+<tr>
+    <td title="Archer"><%= pecker.record_name.name.titlecase %></td>
+    <td title="Spider">
+    <% if user_signed_in? && (current_user.id == pecker.record_name.user_id) %>
+        <%= link_to '+', increment_spider_path(pecker, dir: 1), method: :post, style: "text-decoration:none" %>
+    <%end%>
+    <%= pecker.spider_count %>
+    <% if user_signed_in? && (current_user.id == pecker.record_name.user_id) %>
+        <%= link_to '-', increment_spider_path(pecker, dir: -1), method: :post, style: "text-decoration:none" %>
+    <%end%>
+    </td>
+    <td title="Woodpecker">
+    <% if user_signed_in? && (current_user.id == pecker.record_name.user_id) %>
+        <%= link_to '+', increment_wp_path(pecker, dir: 1), method: :post, style: "text-decoration:none" %>
+    <%end%>
+    <%= pecker.pecker_count%>
+    <% if user_signed_in? && (current_user.id == pecker.record_name.user_id) %>
+        <%= link_to '-', increment_wp_path(pecker, dir: -1), method: :post, style: "text-decoration:none" %>
+    <%end%>
+    </td>
+</tr>

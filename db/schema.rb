@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_083551) do
+ActiveRecord::Schema.define(version: 2020_10_16_100106) do
 
   create_table "committees", force: :cascade do |t|
     t.string "name"
@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(version: 2020_08_23_083551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "spider_wps", force: :cascade do |t|
+    t.integer "record_name_id", null: false
+    t.boolean "spider"
+    t.integer "spider_count"
+    t.boolean "pecker"
+    t.integer "pecker_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"record_name\"", name: "index_spider_wps_on_record_name"
+    t.index ["record_name_id"], name: "index_spider_wps_on_record_name_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -124,4 +136,5 @@ ActiveRecord::Schema.define(version: 2020_08_23_083551) do
 
   add_foreign_key "record_names", "users"
   add_foreign_key "records", "record_names"
+  add_foreign_key "spider_wps", "record_names"
 end

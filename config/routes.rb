@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   post 'admin_save_record', to: 'admin_pannel#admin_save_record', as: 'admin_save_record'
   put 'user_update_role/:id', to: 'admin_pannel#user_update_role', as: 'user_update_role'
 
+  post 'increment_spider/:id/:dir', to: 'records#increment_spider', as: 'increment_spider'
+  post 'increment_wp/:id/:dir', to: 'records#increment_wp', as: 'increment_wp'
+
   resources :admin_pannel, only: [:index]
 
   resources :events do
