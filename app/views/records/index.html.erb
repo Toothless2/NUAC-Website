@@ -9,7 +9,7 @@
   <div class='search-form'>
     <%= render 'search' %>
   </div>
-  <div class='records-table'>
+  <div class='records-table records-table-scores'>
     <table>
       <thead>
         <tr>
@@ -53,7 +53,10 @@
       </thead>
       <tbody>
         <% @peckers.each do |pecker| %>
-          <% if pecker.spider_count == 0 && pecker.pecker_count == 0 && pecker.record_name.user_id != current_user&.id%>
+          <% if pecker.spider_count == 0 && pecker.pecker_count == 0%>
+            <% if user_signed_in? && current_user.confirmed? && pecker.record_name.user_id == current_user&.id%>
+              <%= render partial: 'peckerdispaly', locals: { pecker: pecker  } %>
+            <% end %>
             <%next%>
           <%end%>
           <%= render partial: 'peckerdispaly', locals: { pecker: pecker  } %>

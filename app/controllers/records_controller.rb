@@ -104,7 +104,7 @@ class RecordsController < ApplicationController
 
   private
     def can_edit_record(record)
-      committee_user? || (record.record_name.user != nil && record.record_name.user.id == current_user.id)
+      user_signed_in? && (committee_user? || (record.record_name.user != nil && record.record_name.user.id == current_user.id))
     end
 
     def check_editor
