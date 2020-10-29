@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
@@ -63,9 +70,14 @@
 }
 
 .response-buttons{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .event_response {
@@ -163,9 +175,13 @@
   }
 
   .model-section {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      align-content: center;
-      justify-content: space-around;
+      -ms-flex-line-pack: center;
+          align-content: center;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
   }
 
   .model-section ul {

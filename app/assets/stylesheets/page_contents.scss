@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 // Place all the styles related to the PageContents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
@@ -28,8 +35,11 @@
     padding: 15px 80px;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
+    -webkit-box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
+            box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
     border-radius: 0.6em;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
     margin-left: 1em;
     border: 2px solid var(--accent-colour);
@@ -41,7 +51,11 @@
   }
 
   .edit-page-header .form-actions {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      justify-content: flex-end;
+      -webkit-box-pack: end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
 
   }

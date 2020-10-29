@@ -1,4 +1,41 @@
-// Place all the styles related to the Posts controller here.
+// Place all the styles related to the PageContents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.edit-page-header form {
+    text-align: center;
+}
+
+.edit-page-header textarea {
+    background-color: #f6f6f6;
+    border: none;
+    color: var(--accent-colour);
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100%;
+    height: 20em;
+    border: 2px solid var(--accent-colour);
+    border-radius: 0.6em;
+    outline: none;
+    resize: none;
+}
+
+.edit-page-header [type=submit]  {
+    background-color: var(--accent-colour);
+    border: none;
+    color: white;
+    padding: 15px 80px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 0px 6px -2px rgba(89,86,89,0.68);
+    border-radius: 0.6em;
+    transition: all 0.5s ease-in-out;
+    margin-left: 1em;
+    border: 2px solid var(--accent-colour);
+  }
+
+  .edit-page-header [type=submit]:hover {// Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -141,3 +178,12 @@
         width: 100%;
     }
 }
+      background-color: white;
+      color: var(--accent-colour);
+  }
+
+  .edit-page-header .form-actions {
+      display: flex;
+      justify-content: flex-end;
+
+  }
